@@ -1,0 +1,25 @@
+generated: '2026-07-17'
+method: searched
+probe: true
+source: https://www.peachpayments.com/security
+url: https://www.peachpayments.com/security
+certifications:
+- PCI DSS Level 1
+- PCI DSS v4.0
+evidence:
+- source: https://developer.peachpayments.com/docs/oppwa-guides-pci-dss
+  keywords:
+  - pci dss
+  - card data
+  - level 1
+- source: https://www.peachpayments.com/scale/key-steps-to-ensure-pci-dss-v4.0-compliance
+  keywords:
+  - pci dss v4.0
+  - compliance
+notes: >-
+  Peach Payments processes card data under a PCI DSS Level 1 certified
+  platform (the highest merchant/processor tier) and publishes guidance on
+  PCI DSS v4.0 compliance. Card acquiring runs on the OPPWA (Open Payment
+  Platform Web Architecture) stack. No standalone third-party trust portal
+  (e.g. SafeBase / Vanta) was found; compliance is documented across the
+  developer docs and corporate site.

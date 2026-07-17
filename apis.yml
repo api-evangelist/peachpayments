@@ -1,0 +1,169 @@
+aid: peachpayments
+url: https://raw.githubusercontent.com/api-evangelist/peachpayments/refs/heads/main/apis.yml
+name: Peach Payments
+kind: company
+description: Peach Payments is a pan-African payment orchestration gateway founded
+  in 2012 in Cape Town, South Africa, operating across South Africa, Kenya, and
+  Mauritius. Its PCI DSS Level 1 platform exposes REST APIs for Checkout (Hosted,
+  Embedded, Embedded Express), server-to-server Payments, Payment Links, Payouts,
+  and Reconciliation, supporting cards plus local methods like PayShap, Capitec
+  Pay, 1Voucher, Mobicred, M-PESA, and MauCAS in ZAR, KES, and MUR.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- Fintech
+- Africa
+- Payment Gateway
+- Checkout
+- Payouts
+created: '2026-07-17'
+modified: '2026-07-17'
+specificationVersion: '0.19'
+apis:
+- aid: peachpayments:peachpayments-authentication-api
+  name: Peach Payments Authentication API
+  tags:
+  - OAuth
+  - Authentication
+  - Token
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+    type: Documentation
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  description: OAuth 2.0 client-credentials token endpoint (POST /api/oauth/token)
+    that exchanges clientId, clientSecret, and merchantId for a short-lived Bearer
+    access_token used across Checkout, Payouts, and Reconciliation. Sandbox host
+    sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com.
+- aid: peachpayments:peachpayments-checkout-api
+  name: Peach Payments Checkout API
+  tags:
+  - Checkout
+  - Hosted
+  - Embedded
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/docs/checkout-overview
+  baseURL: https://secure.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/checkout-overview
+    type: Documentation
+  - url: https://developer.peachpayments.com/reference/payment
+    type: APIReference
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  - url: collections/peachpayments.postman_collection.json
+    type: PostmanCollection
+  description: Create Hosted, Embedded, and Embedded Express checkout sessions
+    (POST /v2/checkout), query status, and list available payment methods per
+    currency. Bearer-token authenticated with an entityId and per-request nonce.
+    Sandbox host testsecure.peachpayments.com; live host secure.peachpayments.com.
+- aid: peachpayments:peachpayments-payments-api
+  name: Peach Payments Payments API
+  tags:
+  - Payments
+  - Server to Server
+  - Refunds
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/reference/payment
+  baseURL: https://api-v2.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/payments-api-flows
+    type: Documentation
+  - url: https://developer.peachpayments.com/reference/payment
+    type: APIReference
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  - url: collections/peachpayments.postman_collection.json
+    type: PostmanCollection
+  description: Server-to-server debit (DB) and refund (RF) transactions across
+    cards and local African brands including PayShap, Capitec Pay, 1Voucher,
+    Mobicred, RCS, M-PESA, blink by Emtel, MCB Juice, and MauCAS. Authenticated
+    with an inline userId/password/entityId object. Sandbox host
+    testapi-v2.peachpayments.com; live host api-v2.peachpayments.com.
+- aid: peachpayments:peachpayments-payment-links-api
+  name: Peach Payments Payment Links API
+  tags:
+  - Payment Links
+  - Invoicing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/docs/payment-links-overview
+  baseURL: https://links.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/payment-links-overview
+    type: Documentation
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  - url: collections/peachpayments.postman_collection.json
+    type: PostmanCollection
+  description: Generate, list, and cancel shareable single-use and bulk payment
+    links for a channel (entityId). Bearer-token authenticated. Sandbox host
+    testapi.peachpayments.com.
+- aid: peachpayments:peachpayments-payouts-api
+  name: Peach Payments Payouts API
+  tags:
+  - Payouts
+  - Disbursements
+  - Bank Verification
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/docs/payouts-api-1
+  baseURL: https://payouts.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/payouts-api-1
+    type: Documentation
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  - url: collections/peachpayments.postman_collection.json
+    type: PostmanCollection
+  description: Merchant-initiated payouts, bank account verification, and bulk
+    payout processing with proof-of-payout PDFs. OAuth Bearer authenticated.
+    Sandbox host sandbox-payouts.peachpayments.com; live host
+    payouts.peachpayments.com.
+- aid: peachpayments:peachpayments-reconciliation-api
+  name: Peach Payments Reconciliation API
+  tags:
+  - Reconciliation
+  - Settlement
+  - Reporting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.peachpayments.com/docs/bus-ops-recon-api
+  baseURL: https://reconciliation.peachpayments.com
+  properties:
+  - url: https://developer.peachpayments.com/docs/bus-ops-recon-api
+    type: Documentation
+  - url: openapi/peachpayments-openapi.yml
+    type: OpenAPI
+  description: Settlement and transaction reconciliation reporting
+    (GET /api/merchants/{merchantId}/transactions-recon over a date range).
+    OAuth Bearer authenticated. Sandbox host sandbox-reconciliation.ppay.io;
+    live host reconciliation.peachpayments.com.
+common:
+- type: AgenticAccess
+  url: agentic-access/peachpayments-agentic-access.yml
+- type: TrustCenter
+  url: security/peachpayments-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/peachpayments-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/peachpayments-domain-security.yml
+- type: Authentication
+  url: authentication/peachpayments-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/peach-payments
+- type: LinkedIn
+  url: https://www.linkedin.com/company/peach-payments
+- type: Website
+  url: https://www.peachpayments.com/
+- type: Documentation
+  url: https://developer.peachpayments.com/
+- type: Plans
+  url: plans/peachpayments-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/peachpayments-rate-limits.yml
+- type: FinOps
+  url: finops/peachpayments-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

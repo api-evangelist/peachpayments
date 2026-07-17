@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "Peach Payments API",
+    "description": "Modeled-from-docs Postman collection for the Peach Payments developer APIs (Authentication, Checkout, Payments, Payment Links, Payouts, Reconciliation). Grounded in https://developer.peachpayments.com and the public Postman workspace at https://www.postman.com/peachpayments/peach-payments-public-workspace/. Set {{authBaseUrl}}, {{checkoutBaseUrl}}, {{paymentsBaseUrl}}, {{linksBaseUrl}}, {{payoutsBaseUrl}}, {{reconBaseUrl}}, {{accessToken}}, and {{entityId}}.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "authBaseUrl", "value": "https://sandbox-dashboard.peachpayments.com" },
+    { "key": "checkoutBaseUrl", "value": "https://testsecure.peachpayments.com" },
+    { "key": "paymentsBaseUrl", "value": "https://testapi-v2.peachpayments.com" },
+    { "key": "linksBaseUrl", "value": "https://testapi.peachpayments.com" },
+    { "key": "payoutsBaseUrl", "value": "https://sandbox-payouts.peachpayments.com" },
+    { "key": "reconBaseUrl", "value": "https://sandbox-reconciliation.ppay.io" },
+    { "key": "accessToken", "value": "" },
+    { "key": "entityId", "value": "" },
+    { "key": "merchantId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Generate access token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{authBaseUrl}}/api/oauth/token", "host": ["{{authBaseUrl}}"], "path": ["api", "oauth", "token"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"clientId\": \"<client id>\",\n  \"clientSecret\": \"<client secret>\",\n  \"merchantId\": \"{{merchantId}}\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "item": [
+        {
+          "name": "Create a checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": { "raw": "{{checkoutBaseUrl}}/v2/checkout", "host": ["{{checkoutBaseUrl}}"], "path": ["v2", "checkout"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"authentication\": { \"entityId\": \"{{entityId}}\" },\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"nonce\": \"unique-value-per-request\",\n  \"shopperResultUrl\": \"https://example.com/result\",\n  \"merchantTransactionId\": \"ORDER12345\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Query checkout status",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": {
+              "raw": "{{checkoutBaseUrl}}/v2/checkout/{{checkoutId}}?entityId={{entityId}}",
+              "host": ["{{checkoutBaseUrl}}"],
+              "path": ["v2", "checkout", "{{checkoutId}}"],
+              "query": [{ "key": "entityId", "value": "{{entityId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Payment methods for a currency",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": { "raw": "{{checkoutBaseUrl}}/merchant-specs", "host": ["{{checkoutBaseUrl}}"], "path": ["merchant-specs"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"authentication\": { \"entityId\": \"{{entityId}}\" },\n  \"currency\": \"ZAR\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Initiate a debit (PayShap example)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{paymentsBaseUrl}}/payments", "host": ["{{paymentsBaseUrl}}"], "path": ["payments"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"authentication\": {\n    \"userId\": \"<user id>\",\n    \"password\": \"<password>\",\n    \"entityId\": \"{{entityId}}\"\n  },\n  \"merchantTransactionId\": \"ORDER12345\",\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"paymentBrand\": \"PAYSHAP\",\n  \"paymentType\": \"DB\",\n  \"shopperResultUrl\": \"https://example.com/result\",\n  \"virtualAccount\": {\n    \"bank\": \"FIRSTNATIONALBANK\",\n    \"type\": \"CELLPHONE\",\n    \"accountId\": \"+27-123456789\"\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Query transaction status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{paymentsBaseUrl}}/payments/{{uniqueId}}?entityId={{entityId}}",
+              "host": ["{{paymentsBaseUrl}}"],
+              "path": ["payments", "{{uniqueId}}"],
+              "query": [{ "key": "entityId", "value": "{{entityId}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Links",
+      "item": [
+        {
+          "name": "Generate a payment link",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": {
+              "raw": "{{linksBaseUrl}}/api/channels/{{entityId}}/payments",
+              "host": ["{{linksBaseUrl}}"],
+              "path": ["api", "channels", "{{entityId}}", "payments"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"description\": \"Invoice 12345\",\n  \"expiresAt\": \"2026-08-01T12:00:00Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cancel a payment link",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": {
+              "raw": "{{linksBaseUrl}}/api/payments/{{paymentId}}",
+              "host": ["{{linksBaseUrl}}"],
+              "path": ["api", "payments", "{{paymentId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payouts",
+      "item": [
+        {
+          "name": "Create a payout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": { "raw": "{{payoutsBaseUrl}}/payouts", "host": ["{{payoutsBaseUrl}}"], "path": ["payouts"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"amount\": \"500.00\",\n  \"currency\": \"ZAR\",\n  \"beneficiary\": {\n    \"accountNumber\": \"1234567890\",\n    \"bankCode\": \"250655\",\n    \"accountHolder\": \"Jane Doe\"\n  },\n  \"merchantReference\": \"PAYOUT-001\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Verify a bank account",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": { "raw": "{{payoutsBaseUrl}}/api/accounts/verify", "host": ["{{payoutsBaseUrl}}"], "path": ["api", "accounts", "verify"] },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"accountNumber\": \"1234567890\",\n  \"bankCode\": \"250655\",\n  \"accountHolder\": \"Jane Doe\",\n  \"idNumber\": \"<id number>\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reconciliation",
+      "item": [
+        {
+          "name": "Transactions reconciliation",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": {
+              "raw": "{{reconBaseUrl}}/api/merchants/{{merchantId}}/transactions-recon?startDate=2026-07-01&endDate=2026-07-17",
+              "host": ["{{reconBaseUrl}}"],
+              "path": ["api", "merchants", "{{merchantId}}", "transactions-recon"],
+              "query": [
+                { "key": "startDate", "value": "2026-07-01" },
+                { "key": "endDate", "value": "2026-07-17" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

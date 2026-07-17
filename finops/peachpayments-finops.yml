@@ -1,0 +1,102 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Peach Payments
+providerId: peachpayments
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Payments
+- Fintech
+- Africa
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Peach Payments merchant spend. Costs are transaction-based:
+  a percentage-plus-fixed fee per successful card transaction, currency
+  conversion surcharges on international cards, per-event dispute/chargeback
+  fees, and (for Enterprise) a fixed monthly platform fee against negotiated
+  volume rates. Local payment methods (PayShap, Capitec Pay, 1Voucher,
+  Mobicred, M-PESA) may carry method-specific rates. Billing currency is ZAR
+  (also KES, MUR by market).
+notes: >-
+  Peach uses negotiated, volume-based pricing; representative rates only.
+  Verify against the Peach Payments fees page and your merchant agreement.
+sources:
+- https://www.peachpayments.com/fees/
+- https://developer.peachpayments.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Peach Payments
+serviceCategory: Payments and Financial Services
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: ZAR
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Peach Payments Gateway
+  ServiceCategory: Payments and Financial Services
+  ProviderName: Peach Payments
+  PublisherName: Peach Payments
+  InvoiceIssuerName: Peach Payments
+  BillingCurrency: ZAR
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: card_transactions
+  description: Successful card transactions billed at percentage + fixed fee.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - entityId
+  - paymentBrand
+- name: currency_conversion
+  description: Currency-conversion surcharge on international card transactions.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - currency
+- name: disputes
+  description: Dispute / chargeback events billed per event.
+  unit: events
+  aggregation: sum
+  dimensions:
+  - merchant
+- name: payouts
+  description: Merchant-initiated payouts / disbursements.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - currency
+- name: platform_fee
+  description: Fixed monthly Enterprise platform fee.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - merchant
+principles:
+- name: Visibility
+  description: Use the Reconciliation API (transactions-recon) to pull settlement and transaction records per date range.
+- name: Allocation
+  description: Tag transactions per channel (entityId) / storefront and map to internal cost centers.
+- name: Optimization
+  description: Route to lower-cost local methods (PayShap, Capitec Pay, EFT) where suitable; negotiate volume rates on Enterprise; minimize disputes.
+- name: Accountability
+  description: Reconcile settlements against gateway fees monthly; assign an owner per merchant channel.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

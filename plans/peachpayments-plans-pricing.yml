@@ -1,0 +1,102 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Peach Payments
+providerId: peachpayments
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Payments
+- Fintech
+- Africa
+- Payment Gateway
+- Plans
+description: >-
+  Peach Payments uses custom, volume-based merchant pricing rather than
+  published API tiers. Standard accounts are commonly quoted around 2.95% +
+  R1.50 per successful card transaction, while Enterprise accounts pay a fixed
+  monthly fee (commonly cited around R500/month) for negotiated volume-based
+  rates, daily settlements, and PayPal access. International cards carry an
+  additional currency-conversion fee (commonly 2.5-3.5%), and disputes/
+  chargebacks are billed per event (commonly R350). API access itself is not
+  separately metered; you pay per processed transaction. Exact rates are
+  negotiated with the sales team.
+notes: >-
+  Figures are representative rates cited by third-party comparisons and the
+  Peach Payments fees page; Peach does not publish a fixed public rate card.
+  Verify current rates directly with Peach Payments sales. Currency is South
+  African Rand (ZAR); Peach also processes KES (Kenya) and MUR (Mauritius).
+sources:
+- https://www.peachpayments.com/fees/
+- https://www.peachpayments.com/about/
+plans:
+- id: peachpayments-standard
+  name: Standard
+  type: usage
+  description: >-
+    Per-transaction pricing for standard merchant accounts, aggregated onto
+    Peach Payments' merchant facility.
+  entries:
+  - label: Card Transaction (domestic)
+    name: card_domestic
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: month
+    geo: ZA
+    unit: 1
+    price: ~2.95% + R1.50 per successful transaction (representative)
+    userMultiplied: false
+  - label: International Card Conversion
+    name: card_intl_conversion
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~2.5%-3.5% currency conversion on top of transaction fee
+    userMultiplied: false
+  - label: Dispute / Chargeback
+    name: dispute
+    type: usage
+    metric: event
+    limit: -1
+    timeFrame: month
+    geo: ZA
+    unit: 1
+    price: ~R350 per dispute (representative)
+    userMultiplied: false
+  elements:
+  - name: Hosted Checkout
+  - name: Embedded Checkout
+  - name: Payment Links
+  - name: Local Payment Methods (PayShap, Capitec Pay, 1Voucher, Mobicred, M-PESA)
+- id: peachpayments-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    For merchants with their own merchant account or high volumes: negotiated
+    volume-based rates, daily settlements, PayPal access, and a fixed monthly
+    platform fee. Contact Peach Payments sales.
+  entries:
+  - label: Monthly Platform Fee
+    name: enterprise_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: ZA
+    unit: 1
+    price: ~R500/month (representative) + negotiated per-transaction rates
+    userMultiplied: false
+  elements:
+  - name: Negotiated Volume Rates
+  - name: Daily Settlements
+  - name: PayPal Access
+  - name: Payouts API
+  - name: Reconciliation API
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

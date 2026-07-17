@@ -1,0 +1,735 @@
+# Provenance: modeled-from-docs (2026-07-17).
+# No first-party downloadable OpenAPI file was published by Peach Payments;
+# operations, hosts, parameters, and payment brands below were modeled from the
+# live developer docs at https://developer.peachpayments.com (llms.txt + reference
+# pages) and the public Postman workspace
+# (https://www.postman.com/peachpayments/peach-payments-public-workspace/).
+# Sandbox hosts probed 2026-07-17 (HTTP 403 on bare GET with valid TLSv1.3 certs,
+# expected for POST/OAuth-gated payment endpoints). Local African payment-method
+# brand names are preserved verbatim with an English gloss in descriptions.
+openapi: 3.0.3
+info:
+  title: Peach Payments API
+  description: >-
+    Payment orchestration APIs for Peach Payments, a pan-African payment
+    gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication,
+    Checkout (Hosted / Embedded / Embedded Express), the Payments API for
+    server-to-server debits and refunds, Payment Links, Payouts, and
+    Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is
+    OAuth 2.0 client-credentials (clientId + clientSecret + merchantId ->
+    Bearer access_token) for Checkout / Payouts / Reconciliation, and an
+    inline authentication object (userId + password + entityId) for the
+    server-to-server Payments API.
+  version: '1.0'
+  contact:
+    name: Peach Payments Developer Support
+    url: https://developer.peachpayments.com
+  termsOfService: https://www.peachpayments.com/terms-and-conditions
+servers:
+  - url: https://sandbox-dashboard.peachpayments.com
+    description: Sandbox authentication host (OAuth token)
+  - url: https://dashboard.peachpayments.com
+    description: Live authentication host (OAuth token)
+tags:
+  - name: Authentication
+    description: OAuth 2.0 token generation for Checkout, Payouts, and Reconciliation.
+  - name: Checkout
+    description: Hosted, Embedded, and Embedded Express checkout sessions.
+  - name: Payments
+    description: Server-to-server debit and refund transactions.
+  - name: Payment Links
+    description: Shareable, single-use and bulk payment links.
+  - name: Payouts
+    description: Merchant-initiated payouts and bank account verification.
+  - name: Reconciliation
+    description: Settlement and transaction reconciliation reporting.
+paths:
+  /api/oauth/token:
+    post:
+      operationId: createAccessToken
+      tags:
+        - Authentication
+      summary: Generate an OAuth access token.
+      description: >-
+        Exchange clientId, clientSecret, and merchantId for a short-lived
+        Bearer access_token used by the Checkout, Payouts, and Reconciliation
+        APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host
+        dashboard.peachpayments.com.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthTokenResponse'
+        '401':
+          description: Invalid client credentials.
+  /v2/checkout:
+    servers:
+      - url: https://testsecure.peachpayments.com
+        description: Sandbox Checkout host
+      - url: https://secure.peachpayments.com
+        description: Live Checkout host
+    post:
+      operationId: createCheckout
+      tags:
+        - Checkout
+      summary: Create a checkout session.
+      description: >-
+        Create a Hosted or Embedded checkout instance. Requires a Bearer
+        access_token, the entityId, a unique nonce, amount, and currency
+        (e.g. ZAR, KES, MUR). Returns a checkoutId used to render the
+        hosted page or embed the widget.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+      responses:
+        '200':
+          description: Checkout created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorised.
+  /v2/checkout/{checkoutId}:
+    servers:
+      - url: https://testsecure.peachpayments.com
+      - url: https://secure.peachpayments.com
+    get:
+      operationId: getCheckoutStatus
+      tags:
+        - Checkout
+      summary: Query checkout status.
+      description: Retrieve the current status and result of a checkout session.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: checkoutId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: entityId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Checkout status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutStatusResponse'
+        '404':
+          description: Checkout not found or expired.
+  /merchant-specs:
+    servers:
+      - url: https://testsecure.peachpayments.com
+      - url: https://secure.peachpayments.com
+    post:
+      operationId: getPaymentMethodsForCurrency
+      tags:
+        - Checkout
+      summary: Retrieve payment methods for a currency.
+      description: >-
+        Return the list of enabled payment methods and the merchant ID for a
+        channel (entityId) given a particular currency.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantSpecsRequest'
+      responses:
+        '200':
+          description: Available payment methods.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantSpecsResponse'
+  /payments:
+    servers:
+      - url: https://testapi-v2.peachpayments.com
+        description: Sandbox Payments API host
+      - url: https://api-v2.peachpayments.com
+        description: Live Payments API host
+    post:
+      operationId: createPayment
+      tags:
+        - Payments
+      summary: Initiate a debit transaction.
+      description: >-
+        Initiate a server-to-server debit (paymentType DB) or refund
+        (paymentType RF). Certain parameters are required per payment brand.
+        Local brands include PayShap (bank-to-bank instant EFT), Capitec Pay,
+        1Voucher (voucher PIN), Mobicred (revolving credit), RCS (store card),
+        M-PESA (Kenya mobile money, integer amounts only), blink by Emtel and
+        MCB Juice (Mauritius wallets), Nedbank Direct EFT, Peach EFT, Payflex,
+        ZeroPay, Float, Happy Pay, Scan to Pay, MoneyBadger, and MauCAS.
+        Authentication is an inline object (userId, password, entityId).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '200':
+          description: Transaction processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorised.
+        '500':
+          description: Server error.
+  /payments/{uniqueId}:
+    servers:
+      - url: https://testapi-v2.peachpayments.com
+      - url: https://api-v2.peachpayments.com
+    get:
+      operationId: getPaymentStatus
+      tags:
+        - Payments
+      summary: Query transaction status.
+      description: Retrieve the status and result of a previously initiated transaction.
+      parameters:
+        - name: uniqueId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: entityId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          description: Transaction not found.
+  /api/channels/{entityId}/payments:
+    servers:
+      - url: https://testlinks.ppay.io
+        description: Sandbox Payment Links host
+      - url: https://links.peachpayments.com
+        description: Live Payment Links host
+    post:
+      operationId: createPaymentLink
+      tags:
+        - Payment Links
+      summary: Generate a payment link.
+      description: >-
+        Create a shareable payment link for a channel (entityId). Requires a
+        Bearer access_token, amount, currency, and an expiry.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentLinkRequest'
+      responses:
+        '200':
+          description: Payment link created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentLinkResponse'
+    get:
+      operationId: listPaymentLinks
+      tags:
+        - Payment Links
+      summary: Retrieve all payment links.
+      description: List payment links for a channel (entityId).
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment links.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentLinkResponse'
+  /api/payments/{paymentId}:
+    servers:
+      - url: https://testlinks.ppay.io
+      - url: https://links.peachpayments.com
+    delete:
+      operationId: cancelPaymentLink
+      tags:
+        - Payment Links
+      summary: Cancel a payment link.
+      description: Cancel a previously generated payment link.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment link cancelled.
+        '404':
+          description: Payment link not found.
+  /payouts:
+    servers:
+      - url: https://sandbox-payouts.peachpayments.com
+        description: Sandbox Payouts host
+      - url: https://payouts.peachpayments.com
+        description: Live Payouts host
+    post:
+      operationId: createPayout
+      tags:
+        - Payouts
+      summary: Create a payout.
+      description: >-
+        Initiate a merchant payout to a verified bank account. Requires a
+        Bearer access_token, amount, currency, and beneficiary bank details.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayoutRequest'
+      responses:
+        '200':
+          description: Payout created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutResponse'
+        '401':
+          description: Unauthorised.
+  /payouts/{payoutId}:
+    servers:
+      - url: https://sandbox-payouts.peachpayments.com
+      - url: https://payouts.peachpayments.com
+    get:
+      operationId: getPayout
+      tags:
+        - Payouts
+      summary: Query a payout.
+      description: Retrieve the status and detail of a payout.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: payoutId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payout detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutResponse'
+        '404':
+          description: Payout not found.
+  /api/accounts/verify:
+    servers:
+      - url: https://sandbox-payouts.peachpayments.com
+      - url: https://payouts.peachpayments.com
+    post:
+      operationId: verifyBankAccount
+      tags:
+        - Payouts
+      summary: Verify a bank account.
+      description: Verify a beneficiary bank account before creating a payout.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountVerifyRequest'
+      responses:
+        '200':
+          description: Verification result.
+  /api/merchants/{merchantId}/transactions-recon:
+    servers:
+      - url: https://sandbox-reconciliation.ppay.io
+        description: Sandbox Reconciliation host
+      - url: https://reconciliation.peachpayments.com
+        description: Live Reconciliation host
+    get:
+      operationId: getTransactionsReconciliation
+      tags:
+        - Reconciliation
+      summary: Retrieve transaction reconciliation.
+      description: >-
+        Return reconciled transaction and settlement records for a merchant
+        over a date range.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: merchantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Reconciliation records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 access_token obtained from POST /api/oauth/token, sent as
+        Authorization: Bearer {access_token}.
+  schemas:
+    OAuthTokenRequest:
+      type: object
+      required:
+        - clientId
+        - clientSecret
+        - merchantId
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        merchantId:
+          type: string
+    OAuthTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Token validity in seconds.
+        token_type:
+          type: string
+          example: Bearer
+    CheckoutRequest:
+      type: object
+      required:
+        - authentication
+        - amount
+        - currency
+        - nonce
+        - shopperResultUrl
+      properties:
+        authentication:
+          type: object
+          properties:
+            entityId:
+              type: string
+        amount:
+          type: string
+          example: '100.00'
+        currency:
+          type: string
+          example: ZAR
+        nonce:
+          type: string
+          description: Unique value per request.
+        shopperResultUrl:
+          type: string
+          format: uri
+        merchantTransactionId:
+          type: string
+        paymentType:
+          type: string
+          enum: [DB, RF]
+    CheckoutResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
+    CheckoutStatusResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
+    MerchantSpecsRequest:
+      type: object
+      required:
+        - authentication
+        - currency
+      properties:
+        authentication:
+          type: object
+          properties:
+            entityId:
+              type: string
+        currency:
+          type: string
+          example: ZAR
+    MerchantSpecsResponse:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        paymentMethods:
+          type: array
+          items:
+            type: string
+    PaymentRequest:
+      type: object
+      required:
+        - authentication
+        - merchantTransactionId
+        - amount
+        - currency
+        - paymentBrand
+        - paymentType
+      properties:
+        authentication:
+          type: object
+          required:
+            - userId
+            - password
+            - entityId
+          properties:
+            userId:
+              type: string
+            password:
+              type: string
+            entityId:
+              type: string
+        merchantTransactionId:
+          type: string
+          description: 8-16 alphanumeric characters.
+        amount:
+          type: string
+          example: '100.00'
+        currency:
+          type: string
+          description: ISO-4217 three-letter code.
+          example: ZAR
+        paymentBrand:
+          type: string
+          description: >-
+            Payment method. Includes local African brands such as PAYSHAP,
+            CAPITECPAY, MOBICRED, ONEVOUCHER (1Voucher), RCS, MPESA (M-PESA),
+            NEDBANKDIRECTEFT, PEACHEFT, PAYFLEX, SCANTOPAY, MAUCAS, and
+            international brands like VISA, MASTER, PAYPAL, APPLEPAY, GOOGLEPAY.
+          example: PAYSHAP
+        paymentType:
+          type: string
+          enum: [DB, RF]
+          description: DB = debit, RF = refund/reversal.
+        shopperResultUrl:
+          type: string
+          format: uri
+        virtualAccount:
+          type: object
+          description: >-
+            Method-specific account details (e.g. PayShap bank + cellphone,
+            Capitec Pay ID number, 1Voucher PIN, Mobicred credentials).
+          properties:
+            bank:
+              type: string
+            type:
+              type: string
+            accountId:
+              type: string
+            password:
+              type: string
+        customer:
+          type: object
+        billing:
+          type: object
+        shipping:
+          type: object
+        cart:
+          type: object
+    PaymentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        merchantTransactionId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        paymentType:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
+    PaymentLinkRequest:
+      type: object
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+          example: ZAR
+        expiresAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+        notificationUrl:
+          type: string
+          format: uri
+    PaymentLinkResponse:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        url:
+          type: string
+          format: uri
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+    PayoutRequest:
+      type: object
+      required:
+        - amount
+        - currency
+        - beneficiary
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+          example: ZAR
+        beneficiary:
+          type: object
+          properties:
+            accountNumber:
+              type: string
+            bankCode:
+              type: string
+            accountHolder:
+              type: string
+        merchantReference:
+          type: string
+    PayoutResponse:
+      type: object
+      properties:
+        payoutId:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+    BankAccountVerifyRequest:
+      type: object
+      required:
+        - accountNumber
+        - bankCode
+      properties:
+        accountNumber:
+          type: string
+        bankCode:
+          type: string
+        accountHolder:
+          type: string
+        idNumber:
+          type: string
+    ReconciliationResponse:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        transactions:
+          type: array
+          items:
+            type: object
+    Result:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
+        description:
+          type: string

@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Peach Payments
+providerId: peachpayments
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Payments
+- Fintech
+- Africa
+- Rate Limiting
+- Throttling
+description: >-
+  Peach Payments does not publish specific numeric API rate limits in its
+  developer documentation. The modern Payments API is described as supporting
+  "more transactions per second" than the legacy API, implying per-merchant
+  throughput ceilings, but exact RPS/RPM values are not disclosed publicly and
+  are governed per merchant channel (entityId) and account. OAuth access
+  tokens are short-lived (expires_in seconds) and should be reused until
+  expiry rather than minted per request.
+notes: >-
+  No numeric rate limits are documented on developer.peachpayments.com as of
+  2026-07-17. Confirm throughput ceilings and burst behaviour with Peach
+  Payments support during onboarding. Clients should reuse OAuth tokens and
+  implement retry/backoff.
+sources:
+- https://developer.peachpayments.com/docs/payments-api-release-notes
+- https://developer.peachpayments.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: Transactions Per Second (TPS)
+  scope: merchant
+  metric: transactions
+  limit: see provider documentation
+  notes: Modern Payments API advertises higher TPS than legacy; exact ceiling not published.
+- name: OAuth Token Lifetime
+  scope: account
+  metric: seconds
+  limit: expires_in (short-lived)
+  notes: Reuse the Bearer token until it expires; regenerate on expiry rather than per call.
+policies:
+- name: Token Reuse
+  description: Reuse the OAuth access_token for multiple calls until expires_in elapses.
+- name: Backoff Strategy
+  description: Implement retry with exponential backoff and honor Retry-After / 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

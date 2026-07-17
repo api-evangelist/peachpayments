@@ -1,0 +1,68 @@
+aid: peachpayments
+name: Peach Payments
+review:
+  question: Does Peach Payments expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-17'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Peach Payments delivers asynchronous
+    payment result notifications via HTTP webhooks (server-to-server POST
+    callbacks to a merchant-configured endpoint), not via WebSocket or HTTP
+    Server-Sent Events. Webhooks are request/response HTTP callbacks and are
+    out of AsyncAPI scope under current API Evangelist practice, so no
+    asyncapi/ artifact was authored.
+findings:
+  summary: |
+    Peach Payments does not publish a documented public WebSocket API. All
+    documented developer surfaces are HTTPS REST: OAuth token generation,
+    Checkout (Hosted/Embedded/Embedded Express), the server-to-server
+    Payments API, Payment Links, Payouts, and Reconciliation. Asynchronous
+    payment status is delivered through HTTP webhooks (a POST callback to the
+    merchant's notification URL), which is not a WebSocket (ws:// or wss://)
+    transport. No realtime, bidirectional, or streaming WebSocket endpoint is
+    documented anywhere in the developer portal as of the review date.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api-v2.peachpayments.com
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: HTTP POST callback to a merchant-configured notification endpoint on payment/form events. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Peach Payments' developer portal, API reference, or public Postman workspace as of the review date.
+  endpointsConfirmedRest:
+    - POST https://dashboard.peachpayments.com/api/oauth/token
+    - POST https://secure.peachpayments.com/v2/checkout
+    - GET  https://secure.peachpayments.com/v2/checkout/{checkoutId}
+    - POST https://api-v2.peachpayments.com/payments
+    - GET  https://api-v2.peachpayments.com/payments/{uniqueId}
+    - POST https://links.peachpayments.com/api/channels/{entityId}/payments
+    - DELETE https://links.peachpayments.com/api/payments/{paymentId}
+    - POST https://payouts.peachpayments.com/payouts
+    - GET  https://reconciliation.peachpayments.com/api/merchants/{merchantId}/transactions-recon
+sources:
+  - url: https://developer.peachpayments.com/
+    type: Documentation
+    note: Documentation hub; all listed APIs are HTTPS REST.
+  - url: https://developer.peachpayments.com/reference/payment
+    type: APIReference
+    note: Payments API is REST POST /payments; no WebSocket.
+  - url: https://developer.peachpayments.com/docs/payment-webhook
+    type: Documentation
+    note: Result notifications are HTTP webhooks (POST callbacks), not WebSocket.
+  - url: https://developer.peachpayments.com/llms.txt
+    type: Documentation
+    note: Machine-readable index of all developer pages; no WebSocket surface listed.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket or SSE protocol surface exists. Asynchronous delivery is via
+    HTTP webhooks only, which are out of AsyncAPI scope, so no asyncapi/
+    artifact and no AsyncAPI apis.yml pointer were added.

@@ -1,0 +1,39 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/peachpayments-openapi.yml
+summary:
+  types:
+  - http
+  - inline-credentials
+schemes:
+- name: oauth_bearer
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/peachpayments-openapi.yml
+  notes: >-
+    Checkout, Payment Links, Payouts, and Reconciliation use OAuth 2.0
+    client-credentials. POST clientId + clientSecret + merchantId to
+    {peach-auth-service}/api/oauth/token (sandbox-dashboard.peachpayments.com
+    for sandbox, dashboard.peachpayments.com for live) to obtain a
+    short-lived access_token, then send Authorization: Bearer {access_token}.
+    An entityId scopes the merchant channel, currencies, and payment methods.
+- name: payments_inline_auth
+  type: apiKey
+  in: body
+  scheme: inline-credentials
+  sources:
+  - openapi/peachpayments-openapi.yml
+  notes: >-
+    The server-to-server Payments API does not use the OAuth Bearer flow;
+    it accepts an inline authentication object of userId, password, and
+    entityId in the request body.
+- name: checkout_signature
+  type: hmac
+  scheme: hmac-sha256
+  sources:
+  - https://developer.peachpayments.com/docs/checkout-authentication
+  notes: >-
+    Legacy/Hosted Checkout V1 additionally supports HMAC SHA-256 request
+    signing using a shared secret token from the Peach Payments Dashboard.

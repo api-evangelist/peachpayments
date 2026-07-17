@@ -1,0 +1,53 @@
+generated: '2026-07-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.peachpayments.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Google Trust Services (WE1)
+  cert_expires: Oct 10 19:19:52 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_preload: true
+- host: developer.peachpayments.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Google Trust Services (WE1)
+  cert_expires: Oct  3 22:07:24 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: dashboard.peachpayments.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Sectigo Limited (Public Server Authentication CA DV R36)
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  hsts: null
+- host: api-v2.peachpayments.com
+  https: true
+  cert_issuer: Sectigo Limited (Public Server Authentication CA DV R36)
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  http_status: 403
+  notes: 403 on bare GET; expected for OAuth/entityId-gated POST payment endpoint.
+- host: payouts.peachpayments.com
+  https: true
+  cert_issuer: Sectigo Limited (Public Server Authentication CA DV R36)
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  http_status: 403
+  notes: 403 on bare GET; expected for Bearer-gated payout endpoint.
+- host: secure.peachpayments.com
+  https: true
+  cert_issuer: Sectigo Limited (Public Server Authentication CA DV R36)
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  http_status: 403
+  notes: 403 on bare GET; expected for Bearer/entityId-gated Checkout endpoint.
+domains:
+- domain: peachpayments.com
+  dnssec: false
+  spf: true
+  spf_record: v=spf1 include:7856266.spf06.hubspotemail.net include:spf.mandrillapp.com include:_spf.google.com include:fdspfaus.freshemail.io ~all
+  dmarc: true
+  dmarc_policy: quarantine
+  dmarc_rua: mailto:security@peachpayments.com
+compliance:
+- PCI DSS Level 1
