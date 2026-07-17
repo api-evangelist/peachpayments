@@ -1,0 +1,32 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.peachpayments.com (per-product dated release-notes pages)
+scheme: per-product dated release notes (no single global changelog)
+current_version: Checkout V2
+release_notes_pages:
+  - product: Embedded Checkout
+    url: https://developer.peachpayments.com/docs/checkout-embedded-release-notes
+  - product: Hosted Checkout
+    url: https://developer.peachpayments.com/docs/checkout-release-notes
+  - product: Checkout (shared)
+    url: https://developer.peachpayments.com/docs/checkout-release-notes-1
+  - product: Payment Links
+    url: https://developer.peachpayments.com/docs/payment-links-release-notes
+  - product: Payments API
+    url: https://developer.peachpayments.com/docs/payments-api-release-notes
+  - product: Payment Page
+    url: https://developer.peachpayments.com/docs/payment-page-release-notes
+  - product: Payouts
+    url: https://developer.peachpayments.com/docs/payouts-release-notes
+  - product: Reconciliation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-release-notes
+  - product: Dashboard
+    url: https://developer.peachpayments.com/docs/dashboard-release-notes
+  - product: Mobile SDK (iOS)
+    url: https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-release-notes-ios
+  - product: Mobile SDK (Android)
+    url: https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-release-notes-android
+notes: >-
+  Peach Payments maintains dated release notes per product line rather than a
+  single consolidated changelog. Entry-level detail lives on each page; this
+  artifact records the scheme and the authoritative source pages.

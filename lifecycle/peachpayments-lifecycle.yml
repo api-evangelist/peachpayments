@@ -1,0 +1,36 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://developer.peachpayments.com llms.txt (per-product release notes) +
+  status.peachpayments.com + webhook retry policy.
+versioning:
+  scheme: uri-path
+  current: v2
+  legacy: v1
+  docs: https://developer.peachpayments.com/docs/v2-checkout
+  notes: >-
+    Checkout is versioned in the URI path (V1 legacy, V2 recommended). The
+    server-to-server Payments API and Payouts API are unversioned hosts
+    (api-v2.peachpayments.com, payouts.peachpayments.com).
+release_notes:
+  scheme: per-product dated release notes
+  pages:
+    - https://developer.peachpayments.com/docs/checkout-embedded-release-notes
+    - https://developer.peachpayments.com/docs/checkout-release-notes
+    - https://developer.peachpayments.com/docs/payment-links-release-notes
+    - https://developer.peachpayments.com/docs/payments-api-release-notes
+    - https://developer.peachpayments.com/docs/payouts-release-notes
+    - https://developer.peachpayments.com/docs/bus-ops-recon-release-notes
+    - https://developer.peachpayments.com/docs/dashboard-release-notes
+deprecation:
+  policy_url: https://developer.peachpayments.com/docs/v2-checkout
+  sunset_header: false
+  notes: >-
+    Checkout V1 is documented as legacy with V2 "recommended"; migration is
+    guided via docs and release notes rather than an RFC 8594 Sunset header.
+status_page: https://status.peachpayments.com
+webhook_delivery:
+  retry_window_days: 30
+  backoff: exponential (2, 4, 8, 15, 30 minutes, then hourly)
+  notes: Unsuccessful (non-200) webhooks are retried; delivery order not guaranteed.
+deprecated_operations: []

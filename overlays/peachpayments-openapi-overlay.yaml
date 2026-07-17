@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Peach Payments API
+  version: 1.0.0
+extends: openapi/peachpayments-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-17'
+      x-apievangelist-provider: peachpayments
+      x-apievangelist-region: pan-africa (ZA, KE, MU)
+      x-apievangelist-compliance: PCI DSS Level 1
+  - target: $.info
+    update:
+      x-webhooks-signing: HMAC-SHA256 (x-webhook-signature header; message = timestamp.webhookId.url.payload)
+      x-webhooks-retry: 30 days exponential backoff (2/4/8/15/30 min then hourly)
+  - target: $.tags
+    update:
+      - name: Payment Links
+        x-apievangelist-note: Shareable single-use and bulk payment links per channel (entityId).
+  - target: $.paths['/payments'].post
+    update:
+      x-result-envelope: result.code / result.description (OPPWA ddd.ddd.ddd codes; 000.000.* = success)
+  - target: $.paths['/v2/checkout'].post
+    update:
+      x-idempotency-note: >-
+        No formal Idempotency-Key header; merchantTransactionId (8-16 alnum) is
+        the merchant-side correlation/dedup key and each request carries a unique nonce.

@@ -1,0 +1,53 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://developer.peachpayments.com/docs/dashboard-sandbox +
+  https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-testing-guide
+  + https://developer.peachpayments.com/docs/reference-test-and-go-live
+test_live_separation:
+  model: separate sandbox hosts + sandbox Dashboard credentials
+  sandbox_hosts:
+    authentication: sandbox-dashboard.peachpayments.com
+    checkout: testsecure.peachpayments.com
+    payments_s2s: testapi-v2.peachpayments.com
+    payment_links: testapi.peachpayments.com
+    payouts: sandbox-payouts.peachpayments.com
+    reconciliation: sandbox-reconciliation.ppay.io
+  live_hosts:
+    authentication: dashboard.peachpayments.com
+    checkout: secure.peachpayments.com
+    payments_s2s: api-v2.peachpayments.com
+    payment_links: links.peachpayments.com
+    payouts: payouts.peachpayments.com
+    reconciliation: reconciliation.peachpayments.com
+  notes: >-
+    A sandbox merchant account (with its own entityId and OAuth clientId /
+    clientSecret) is provisioned from the Dashboard; going live requires a
+    documented test-and-go-live procedure.
+test_cards:
+  note: >-
+    Published 3-D Secure 2 test cards. The docs page lists numbers by brand;
+    expiry/CVV are assigned per test account. Cards not on the list return
+    result 000.400.109 "Card is not enrolled for 3DS version 2" unless
+    enrollment is forced via custom parameters.
+  visa:
+    - '4200000000000042'
+    - '4200000000000067'
+    - '4012000000003119'
+    - '4012000000003127'
+    - '4012000000003085'
+  mastercard:
+    - '5200000000000015'
+    - '5200000000000049'
+  maestro:
+    - '6799998900000060018'
+    - '6773670009114879'
+  amex:
+    - '343434343434343'
+    - '375987000000021'
+    - '375987000169735'
+    - '375987000169743'
+    - '375987000169750'
+test_result_trigger:
+  success_code: 000.100.110
+  note: In the test system a successful request returns result 000.100.110.

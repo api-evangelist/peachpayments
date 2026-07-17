@@ -1,0 +1,47 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  openapi/peachpayments-openapi.yml + https://developer.peachpayments.com docs
+  (authentication, webhooks, response codes).
+authentication:
+  style: >-
+    OAuth 2.0 client-credentials Bearer token for Checkout, Payment Links,
+    Payouts, and Reconciliation (POST /api/oauth/token -> access_token); an
+    inline authentication object (userId + password + entityId) for the
+    server-to-server Payments API.
+  scoping: entityId scopes the merchant channel, currencies, and payment methods.
+  cross_ref: authentication/peachpayments-authentication.yml
+idempotency:
+  supported: false
+  correlation_key: merchantTransactionId (8-16 alphanumeric characters)
+  request_uniqueness: nonce (unique value per checkout request)
+  notes: >-
+    No RFC-style Idempotency-Key header is documented. merchantTransactionId is
+    the merchant-assigned correlation/dedup key and can be used to query
+    transaction status; each checkout request also carries a unique nonce.
+pagination:
+  style: date-range / resource-scoped queries
+  notes: >-
+    Reconciliation and status queries are filtered by merchantId + startDate /
+    endDate rather than a cursor/offset pagination envelope.
+error_envelope:
+  fields: [result.code, result.description]
+  format: OPPWA ddd.ddd.ddd result codes
+  cross_ref: errors/peachpayments-problem-types.yml, errors/peachpayments-decline-codes.yml
+versioning:
+  style: uri-path (v1 legacy, v2 recommended for Checkout)
+  cross_ref: lifecycle/peachpayments-lifecycle.yml
+webhooks:
+  signing: HMAC-SHA256 (opt-in via support)
+  headers: [x-webhook-signature-algorithm, x-webhook-timestamp, x-webhook-id, x-webhook-signature]
+  signature_message: '{timestamp}.{webhookId}.{url}.{payload}'
+  ordering: not guaranteed; use the payload timestamp to order events
+  cross_ref: asyncapi/peachpayments-webhooks.yml
+rate_limiting:
+  notes: >-
+    Some status endpoints document explicit limits (e.g. two transaction-status
+    requests per minute per transaction).
+  cross_ref: rate-limits/peachpayments-rate-limits.yml
+currency:
+  standard: ISO-4217 three-letter codes (ZAR, KES, MUR)
+  amount_format: decimal string (e.g. "100.00")

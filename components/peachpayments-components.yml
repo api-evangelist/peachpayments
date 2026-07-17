@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.peachpayments.com (checkout + mobile SDK docs)
+notes: >-
+  Client-side / embeddable payment surfaces distinct from the server-side REST
+  APIs. Grouped by family.
+families:
+  - name: Embedded Checkout
+    kind: web widget
+    loader: Embedded Checkout SDK (checkout.js)
+    docs: https://developer.peachpayments.com/docs/checkout-embedded
+    variants:
+      - Embedded Checkout (full in-page widget)
+      - Embedded Express (compressed express widget)
+    tutorials:
+      - https://developer.peachpayments.com/docs/checkout-embedded-tutorial
+      - https://developer.peachpayments.com/docs/checkout-embedded-react-tutorial
+      - https://developer.peachpayments.com/docs/checkout-embedded-flutter-tutorial
+    reference: https://developer.peachpayments.com/docs/checkout-embedded-sdk-reference
+  - name: Hosted Checkout
+    kind: hosted redirect page
+    docs: https://developer.peachpayments.com/docs/v2-checkout-hosted
+    notes: Peach-hosted payment page rendered from a checkoutId; no client code required.
+  - name: Mobile SDK UI
+    kind: native mobile UI
+    docs: https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-ready-to-use-ui
+    platforms: [iOS, Android]
+    notes: Ready-to-use UI plus bring-your-own-UI mode, with 3-D Secure 2 and fraud management.
+  - name: E-commerce extensions
+    kind: plugin
+    notes: >-
+      Prebuilt payment extensions for platforms such as WooCommerce and Shopify
+      (referenced across webhook and integration docs).

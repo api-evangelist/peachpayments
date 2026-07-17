@@ -1,0 +1,209 @@
+# Peach Payments documentation hub Documentation
+
+> Peach Payments processes online and in-store payments using a variety of payment methods and offers payment extensions for a number of e-commerce platforms.
+
+## Guides
+- [Product portfolio overview](https://developer.peachpayments.com/docs/product-portfolio-overview.md)
+- [Payment methods](https://developer.peachpayments.com/docs/pp-payment-methods.md)
+- [Manage payment methods](https://developer.peachpayments.com/docs/manage-payment-methods.md)
+- [Checkout](https://developer.peachpayments.com/docs/checkout-overview.md)
+- [V2 - recommended](https://developer.peachpayments.com/docs/v2-checkout.md)
+- [Authentication](https://developer.peachpayments.com/docs/checkout-embedded-authentication.md)
+- [Embedded Checkout overview](https://developer.peachpayments.com/docs/checkout-embedded.md)
+- [Embed checkout in your website](https://developer.peachpayments.com/docs/checkout-embedded-tutorial.md)
+- [Embed checkout in your React Native mobile app](https://developer.peachpayments.com/docs/checkout-embedded-react-tutorial.md)
+- [Embed checkout in your Flutter mobile app](https://developer.peachpayments.com/docs/checkout-embedded-flutter-tutorial.md)
+- [Embedded Checkout SDK reference](https://developer.peachpayments.com/docs/checkout-embedded-sdk-reference.md)
+- [Hosted Checkout V2](https://developer.peachpayments.com/docs/v2-checkout-hosted.md)
+- [Checkout V2 status](https://developer.peachpayments.com/docs/v2-checkout-status.md)
+- [Checkout V2 payment methods](https://developer.peachpayments.com/docs/v2-checkout-payment-methods.md)
+- [Embedded Checkout release notes](https://developer.peachpayments.com/docs/checkout-embedded-release-notes.md)
+- [V1](https://developer.peachpayments.com/docs/v1-checkout.md)
+- [Hosted Checkout](https://developer.peachpayments.com/docs/checkout-hosted.md)
+- [Payment flow summary](https://developer.peachpayments.com/docs/checkout-payment-flow.md)
+- [Hosted Checkout authentication and authorisation](https://developer.peachpayments.com/docs/checkout-authentication.md)
+- [Hosted Checkout payment request](https://developer.peachpayments.com/docs/checkout-payment.md)
+- [Hosted Checkout payment response](https://developer.peachpayments.com/docs/checkout-response.md)
+- [Redirect response](https://developer.peachpayments.com/docs/checkout-redirect-response.md)
+- [Checkout V1 status](https://developer.peachpayments.com/docs/checkout-payment-status.md)
+- [Checkout V1 merchant specs](https://developer.peachpayments.com/docs/checkout-merchant-specs.md)
+- [Hosted Checkout release notes](https://developer.peachpayments.com/docs/checkout-release-notes.md)
+- [Shared functionality](https://developer.peachpayments.com/docs/checkout-api.md)
+- [Refund](https://developer.peachpayments.com/docs/checkout-refund.md)
+- [Tokenisation](https://developer.peachpayments.com/docs/checkout-tokenisation.md)
+- [Checkout webhooks](https://developer.peachpayments.com/docs/checkout-webhooks.md)
+- [Checkout reference materials](https://developer.peachpayments.com/docs/checkout-reference-materials.md)
+- [Checkout FAQ](https://developer.peachpayments.com/docs/checkout-faq.md)
+- [Checkout release notes](https://developer.peachpayments.com/docs/checkout-release-notes-1.md)
+- [Payment Links](https://developer.peachpayments.com/docs/payment-links-overview.md)
+- [Payment Links API](https://developer.peachpayments.com/docs/payment-links-api.md)
+- [Payment Links authentication](https://developer.peachpayments.com/docs/payment-links-authentication.md)
+- [Generate a payment link](https://developer.peachpayments.com/docs/generate-link-1.md)
+- [Cancel a payment link](https://developer.peachpayments.com/docs/cancel-link.md)
+- [Query a payment status](https://developer.peachpayments.com/docs/query-payment.md)
+- [Retrieve all payment links](https://developer.peachpayments.com/docs/retrieve-all-payment-links.md)
+- [Generate bulk payment links](https://developer.peachpayments.com/docs/generate-bulk-payment-links.md): Create and send up to 1000 payment links.
+- [Payment Links webhooks](https://developer.peachpayments.com/docs/payment-links-webhooks.md)
+- [Payment Links on the Dashboard](https://developer.peachpayments.com/docs/payment-links-dashboard.md)
+- [Payment Links reference materials](https://developer.peachpayments.com/docs/payment-links-reference.md)
+- [Payment Links release notes](https://developer.peachpayments.com/docs/payment-links-release-notes.md)
+- [Payment Links FAQ](https://developer.peachpayments.com/docs/payment-links-faq.md)
+- [Bulk payment links CSV parameters](https://developer.peachpayments.com/docs/bulk-payment-links-parameters.md)
+- [Payments API](https://developer.peachpayments.com/docs/payments-api-overview.md)
+- [Payments API flows](https://developer.peachpayments.com/docs/payments-api-flows.md)
+- [Payments API reference materials](https://developer.peachpayments.com/docs/payments-api-reference-materials.md)
+- [Payments API release notes](https://developer.peachpayments.com/docs/payments-api-release-notes.md)
+- [Payment Page](https://developer.peachpayments.com/docs/payment-page.md)
+- [Payment Page release notes](https://developer.peachpayments.com/docs/payment-page-release-notes.md)
+- [Payment extensions, plugins, apps](https://developer.peachpayments.com/docs/payment-extensions-overview.md)
+- [Ecwid](https://developer.peachpayments.com/docs/ecwid.md): Connect Peach Payments to your Ecwid store.
+- [Gravity Forms](https://developer.peachpayments.com/docs/gravity-forms.md)
+- [Magento](https://developer.peachpayments.com/docs/magento.md): Connect Peach Payments to your Magento store.
+- [nopCommerce](https://developer.peachpayments.com/docs/nopcommerce.md): Connect Peach Payments to your nopCommerce store.
+- [OpenCart](https://developer.peachpayments.com/docs/opencart.md): Connect Peach Payments to your OpenCart store.
+- [SBTech](https://developer.peachpayments.com/docs/sbtech.md): Connect Peach Payments to your SBTech platform.
+- [Shopify](https://developer.peachpayments.com/docs/shopify.md): Connect Peach Payments to your Shopify store.
+- [Wix](https://developer.peachpayments.com/docs/wix.md): Connect Peach Payments to your Wix store.
+- [WooCommerce](https://developer.peachpayments.com/docs/woocommerce.md): Connect Peach Payments to your WooCommerce store.
+- [Xero](https://developer.peachpayments.com/docs/dashboard-xero.md)
+- [Card payments](https://developer.peachpayments.com/docs/card-overview.md)
+- [Manage card payments](https://developer.peachpayments.com/docs/card-manage-payments.md)
+- [Recurring payments](https://developer.peachpayments.com/docs/dashboard-recurring.md)
+- [Payouts](https://developer.peachpayments.com/docs/peach-payouts.md)
+- [Payouts API](https://developer.peachpayments.com/docs/payouts-api-1.md)
+- [Payouts on the Dashboard](https://developer.peachpayments.com/docs/payouts-dashboard.md)
+- [Payouts reference materials](https://developer.peachpayments.com/docs/payouts-reference.md)
+- [Payouts release notes](https://developer.peachpayments.com/docs/payouts-release-notes.md)
+- [View and refund transactions](https://developer.peachpayments.com/docs/dashboard-transactions.md)
+- [Manage your Dashboard](https://developer.peachpayments.com/docs/dashboard-overview.md)
+- [SME onboarding](https://developer.peachpayments.com/docs/dashboard-onboarding.md)
+- [Reporting](https://developer.peachpayments.com/docs/dashboard-reporting.md)
+- [Settlement reconciliation](https://developer.peachpayments.com/docs/dashboard-reporting-settlements.md): Download settlement reconciliation.
+- [Connect](https://developer.peachpayments.com/docs/dashboard-connect.md)
+- [Settings](https://developer.peachpayments.com/docs/dashboard-settings.md)
+- [Dashboard reference materials](https://developer.peachpayments.com/docs/dashboard-reference.md)
+- [Dashboard release notes](https://developer.peachpayments.com/docs/dashboard-release-notes.md)
+- [Reconciliation](https://developer.peachpayments.com/docs/bus-ops-reconciliation.md)
+- [Reconciliation API](https://developer.peachpayments.com/docs/bus-ops-recon-api.md)
+- [Dashboard reconciliation reports](https://developer.peachpayments.com/docs/dashboard-reporting-reconciliation.md)
+- [Reconciliation reference materials](https://developer.peachpayments.com/docs/bus-ops-recon-reference.md)
+- [Reconciliation release notes](https://developer.peachpayments.com/docs/bus-ops-recon-release-notes.md)
+- [Settlement and billing](https://developer.peachpayments.com/docs/reference-reconciliation-settlement-billing.md)
+- [Response codes](https://developer.peachpayments.com/docs/dashboard-response-codes.md)
+- [Test and go live procedure](https://developer.peachpayments.com/docs/reference-test-and-go-live.md)
+- [Webhooks](https://developer.peachpayments.com/docs/reference-webhooks.md)
+- [Sandbox](https://developer.peachpayments.com/docs/dashboard-sandbox.md)
+- [Payments reference materials](https://developer.peachpayments.com/docs/reference-payments.md)
+- [General payments FAQ](https://developer.peachpayments.com/docs/payments-faq.md)
+- [Best practices](https://developer.peachpayments.com/docs/reference-best-practices.md)
+- [Getting started](https://developer.peachpayments.com/docs/oppwa-get-started.md)
+- [Guides](https://developer.peachpayments.com/docs/oppwa-guides.md)
+- [3-D Secure](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure.md)
+- [3-D Secure parameters](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-parameters.md)
+- [3-D Secure testing guide](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-testing-guide.md)
+- [Exemption management](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-exemption-management.md)
+- [Non-payment authentication](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-non-payment-authentication.md)
+- [3RI authentication](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-3ri-authentication.md)
+- [Identity Check Insights](https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure-identity-check-insights.md)
+- [Tokenisation](https://developer.peachpayments.com/docs/oppwa-guides-tokenisation.md)
+- [Network token test cards](https://developer.peachpayments.com/docs/oppwa-guides-tokenisation-network-tokens-test-cards.md)
+- [Card-on-file](https://developer.peachpayments.com/docs/oppwa-guides-card-on-file.md)
+- [Webhooks](https://developer.peachpayments.com/docs/oppwa-guides-webhooks.md)
+- [PCI DSS](https://developer.peachpayments.com/docs/oppwa-guides-pci-dss.md)
+- [Integrations](https://developer.peachpayments.com/docs/oppwa-integrations.md)
+- [Server-to-Server](https://developer.peachpayments.com/docs/oppwa-integrations-server-to-server.md)
+- [Server-to-Server registration tokens](https://developer.peachpayments.com/docs/oppwa-integrations-server-to-server-registration-tokens.md)
+- [Server-to-Server network tokens](https://developer.peachpayments.com/docs/oppwa-integrations-server-to-server-network-tokens.md)
+- [Standalone 3-D Secure](https://developer.peachpayments.com/docs/oppwa-integrations-server-to-server-standalone-3-d-secure.md)
+- [Standalone exemption](https://developer.peachpayments.com/docs/oppwa-integrations-server-to-server-standalone-exemption.md)
+- [Mobile SDK V1](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk.md)
+- [First integration](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-first-integration.md)
+- [Set up your server](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-set-up-your-server.md)
+- [Ready-to-use UI](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-ready-to-use-ui.md)
+- [SDK and your own UI](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-and-your-own-ui.md)
+- [Brand configurations](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-brand-configurations.md)
+- [3-D Secure 2](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-3-d-secure-2.md)
+- [Mobile SDK fraud management](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-fraud-management.md)
+- [Mobile SDK error codes](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-error-codes.md)
+- [Download](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-download.md)
+- [Release notes - iOS](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-release-notes-ios.md)
+- [Release notes - Android](https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk-release-notes-android.md)
+- [COPYandPAY](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay.md)
+- [COPYandPAY API](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-api.md)
+- [Customisation](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-customisation.md)
+- [Advanced options](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-advanced-options.md)
+- [COPYandPAY registration tokens](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-registration-tokens.md)
+- [COPYandPAY network tokens](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-network-tokens.md)
+- [Apple Pay](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-apple-pay.md)
+- [Google Pay](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-google-pay.md)
+- [Fast checkout](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-fast-checkout.md)
+- [Mobile optimisation](https://developer.peachpayments.com/docs/oppwa-integrations-copyandpay-mobile-optimisation.md)
+- [Backoffice](https://developer.peachpayments.com/docs/oppwa-integrations-backoffice.md)
+- [Chargeback operations](https://developer.peachpayments.com/docs/oppwa-integrations-backoffice-chargebacks.md)
+- [Reporting](https://developer.peachpayments.com/docs/oppwa-integrations-reporting.md)
+- [References](https://developer.peachpayments.com/docs/oppwa-references.md)
+- [Server-to-Server, Mobile SDK, and COPYandPAY API reference](https://developer.peachpayments.com/docs/oppwa-references-api.md)
+- [Transaction flows](https://developer.peachpayments.com/docs/oppwa-references-transaction-flows.md)
+- [Regression testing](https://developer.peachpayments.com/docs/oppwa-references-regression-testing.md)
+- [Data retention policy](https://developer.peachpayments.com/docs/oppwa-references-data-retention-policy.md)
+- [Release notes](https://developer.peachpayments.com/docs/oppwa-references-release-notes.md)
+- [Support](https://developer.peachpayments.com/docs/oppwa-support.md)
+- [Server-to-Server, Mobile SDK, and COPYandPAY features FAQ](https://developer.peachpayments.com/docs/oppwa-support-features.md)
+- [Go live with Server-to-Server, Mobile SDK, and COPYandPAY](https://developer.peachpayments.com/docs/oppwa-support-going-live.md)
+- [TLS FAQ](https://developer.peachpayments.com/docs/oppwa-support-tls.md)
+- [Supported browsers](https://developer.peachpayments.com/docs/oppwa-support-supported-browsers.md)
+- [Server-to-Server, Mobile SDK, and COPYandPAY webhooks FAQ](https://developer.peachpayments.com/docs/oppwa-support-webhooks.md)
+- [COPYandPAY FAQ](https://developer.peachpayments.com/docs/oppwa-support-copyandpay.md)
+
+## API Reference
+- [Initiate checkout](https://developer.peachpayments.com/reference/post_v2-checkout.md): Create a checkout to use in Embedded Checkout or redirect the customer to the `redirectUrl` for Hosted Checkout. For more information, see the [Embedded Checkout](https://developer.peachpayments.com/docs/checkout-embedded-tutorial#tutorial) or [Hosted Checkout](https://developer.peachpayments.com/docs/v2-checkout-hosted) documentation, and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/hdj5dir/generate-checkout-id?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Query checkout status](https://developer.peachpayments.com/reference/get_v2-checkout-checkoutid-status.md): Get the status of a checkout by checkout ID. To determine the status of the checkout, use the `result.code` and `result.description` fields in the response. For the full list of possible codes, see [Result codes](https://developer.peachpayments.com/docs/dashboard-response-codes#result-codes). For more information, see the [documentation](https://developer.peachpayments.com/docs/v2-checkout-status), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/cxum1zv/query-checkout-status-v2?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Validate checkout request](https://developer.peachpayments.com/reference/post_v2-checkout-validate.md): Validate a request before trying to initiate a checkout. For sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/k898f48/checkout-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-5aefd57e-9654-401a-a6de-2160df19328f).
+- [Retrieve a list of payment methods for a currency](https://developer.peachpayments.com/reference/get_v2-channels-entityid-payment-methods.md): Retrieve a list of enabled payment methods for a channel given a particular currency. For more information, see the [documentation](https://developer.peachpayments.com/docs/v2-checkout-payment-methods), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/imm01hp/retrieve-a-list-of-payment-methods-for-a-currency?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Initiate redirect-based checkout](https://developer.peachpayments.com/reference/post_checkout-initiate.md): Provide a redirect URL to the caller to redirect the user to Hosted Checkout. The POST request contains the entityId, signature, purchase parameters, and any custom parameters that a merchant optionally sends. This allows the checkout to be created from a backend without requiring a "form post", or other similar method, from the frontend. For more information, see the [documentation](https://developer.peachpayments.com/docs/checkout-payment#redirect-based-checkout), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/pbohqei/initiate-redirect-based-checkout?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Initiate checkout](https://developer.peachpayments.com/reference/post_checkout.md): Load Hosted Checkout to complete a payment. The POST request contains the entityId, signature, purchase parameters, and any custom parameters that a merchant optionally sends. Sign the data on the backend and execute the POST from the browser. For more information, see the [documentation](https://developer.peachpayments.com/docs/checkout-payment#form-post-checkout), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/9j2mu0f/initiate-checkout?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Validate checkout request](https://developer.peachpayments.com/reference/post_checkout-validate.md): Validate a request before trying to initiate a checkout session. For sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/hhehu1w/checkout-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-5aefd57e-9654-401a-a6de-2160df19328f).
+- [Query checkout status](https://developer.peachpayments.com/reference/get_status.md): Get the status of a checkout. To determine the status of the checkout, use the `result.code` and `result.description` fields in the response. For the full list of possible codes, see [Result codes](https://developer.peachpayments.com/docs/dashboard-response-codes#result-codes). For more information, see the [documentation](https://developer.peachpayments.com/docs/checkout-payment-status), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/kvwxqv5/query-checkout-status?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Retrieve a list of payment methods for a currency](https://developer.peachpayments.com/reference/post_merchant-specs.md): Retrieve a list of enabled payment methods for a channel given a particular currency. For more information, see the [documentation](https://developer.peachpayments.com/docs/checkout-merchant-specs), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/ex0ukk9/retrieve-a-list-of-payment-methods-for-a-currency?action=share&source=copy-link&creator=20323380&ctx=documentation).
+- [Get CSP config as JSON](https://developer.peachpayments.com/reference/get_well-known-csp-config-json.md): Returns the Content Security Policy configuration file in JSON format.
+- [Get CSP config as plain text](https://developer.peachpayments.com/reference/get_well-known-csp-config-txt.md): Returns the Content Security Policy configuration file in plain text format.
+- [Generate link](https://developer.peachpayments.com/reference/post_api-channels-entityid-payments-1.md): Generate a unique payment link for a transaction and optionally send this link to the recipient via email, SMS, WhatsApp, or a combination of the three.  For more information, see the [documentation](https://developer.peachpayments.com/docs/generate-link-1).
+- [Cancel link](https://developer.peachpayments.com/reference/delete_api-payments-paymentid-1.md): Cancel a previously-generated link by supplying the unique paymentId which is returned to you in the payment response.  For more information, see the [documentation](https://developer.peachpayments.com/docs/cancel-link).
+- [Retrieve or export all payment links](https://developer.peachpayments.com/reference/get_api-payments-1.md): Retrieve a paginated list or export a CSV of all payment links. To export to CSV, change the request header's `Accept` value to `text/csv`. For more information, see the [documentation](https://developer.peachpayments.com/docs/retrieve-all-payment-links), or to try it out, see our [Postman collection](https://www.postman.com/peachpayments/workspace/peach-payments-public-workspace/request/13324425-265d80b0-5baa-478b-be10-debc942ca8f3).
+- [Query payment status](https://developer.peachpayments.com/reference/get_api-payments-paymentid-1.md): Query the status of a payment.  For more information, see the [documentation](https://developer.peachpayments.com/docs/query-payment).
+- [Download a file](https://developer.peachpayments.com/reference/get_api-payments-paymentid-files-fileid.md): Downloads a file that was attached to a payment link.
+- [Upload a file](https://developer.peachpayments.com/reference/post_api-attachments.md): Upload a file so that it can be attached to a payment link. Only PDFs smaller than 5 MB are supported.
+- [Generate batch link](https://developer.peachpayments.com/reference/post_api-channels-entityid-payments-batches.md): Returns a URL to which the batch file must be uploaded.  For more information, see the [documentation](https://developer.peachpayments.com/docs/generate-bulk-payment-links).
+- [Get all batch statuses](https://developer.peachpayments.com/reference/get_api-channels-entityid-payments-batches.md): Query all batch statuses of a batch for a channel.
+- [Batch link status](https://developer.peachpayments.com/reference/get_api-batches-batchid.md): Returns the status of the batch.
+- [Get batch error files](https://developer.peachpayments.com/reference/get_api-batches-batchid-files.md): Returns a set of URLs that can be accessed to retrieve the batch error files.
+- [Payment](https://developer.peachpayments.com/reference/payment.md): Initiate a debit transaction.  Certain parameters are required for specific payment methods and certain parameters act differently depending on the payment method.  - For PayShap, `virtualAccount.bank` (the customer's bank: `FIRSTNATIONALBANK`, `DISCOVERYBANK`, `NEDBANK`, `TYMEBANK`, or `ABSABANK`), `virtualAccount.type` (the customer's identifier type: `CELLPHONE`), `virtualAccount.accountId` (the customer's phone number in the `+27-123456789` format), and `shopperResultUrl` are required. - For Capitec Pay, `virtualAccount.type` (the customer's identifier type: `IDNUMBER`, `CELLPHONE`, or `ACCOUNTNUMBER`), `virtualAccount.accountId` (the customer's 13-digit ID number, 10-digit phone number starting with `0`, or up to 64-digit, alphanumeric bank account number), and `shopperResultUrl` are required. High-risk merchants must provide the verified `IDNUMBER` and cannot use the `CELLPHONE` or `ACCOUNTNUMBER` account types. - For Peach EFT, the `shopperResultUrl` is required. Absa categorises merchants as either low risk or high risk. Low-risk merchants support paying with ID; high-risk merchants must supply a merchant-verified ID that the customer cannot edit. For high-risk merchants using the Payments API, supply the verified ID in `virtualAccount` as an array. - For 1Voucher, `customer.mobile` (the customer's phone number for receiving change vouchers and refunds) and `virtualAccount.password` (the voucher PIN) are required. - For Mobicred, `virtualAccount.accountId` (the customer's Mobicred email address), `virtualAccount.password` (the customer's Mobicred password), and `shopperResultUrl` are required. - For RCS cards, `card.number` (the customer's RCS card number) and `shopperResultUrl` are required. - For M-PESA, `virtualAccount.accountId` (the customer's 12-digit phone number) and `shopperResultUrl` are required. M-PESA only accepts integer amounts, not decimals, so round up your amount. - For blink by Emtel and MCB Juice, `virtualAccount.accountId` (the customer's 8-digit phone number) and `shopperResultUrl` are required. - For Nedbank Direct EFT, Payflex, ZeroPay, Float, Happy Pay, Scan to Pay, MoneyBadger, and MauCAS, the `shopperResultUrl` is required.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payments-api-flows#payment-flow), and for sample calls, see our [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/yblmbqd/payments-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-9345d747-fcdd-4a5c-83e4-6f637771b28b).
+- [Refund](https://developer.peachpayments.com/reference/refund.md): Refund a successful debit transaction. You can only refund [certain payment methods](https://developer.peachpayments.com/docs/pp-payment-methods).  For more information, see the [documentation](https://developer.peachpayments.com/docs/payments-api-flows#refund-flow), and for sample calls, see our [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/i97xsu8/payments-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-9345d747-fcdd-4a5c-83e4-6f637771b28b).
+- [Query a transaction by merchantTransactionId](https://developer.peachpayments.com/reference/transaction_status.md): Query the status of a transaction using the merchantTransactionId. Could return multiple results.  You can send two transaction status requests per minute per transaction.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payments-api-flows#transaction-status-flow), and for sample calls, see our [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/22k36iv/payments-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-9345d747-fcdd-4a5c-83e4-6f637771b28b).
+- [Query a transaction by transaction ID](https://developer.peachpayments.com/reference/get_payments-uniqueid.md): Query the status of a transaction using the Peach Payments unique ID.  You can send two transaction status requests per minute per transaction.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payments-api-flows#transaction-status-flow), and for sample calls, see our [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/ohxwlp8/payments-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-9345d747-fcdd-4a5c-83e4-6f637771b28b).
+- [Retrieve your balance and last transaction date](https://developer.peachpayments.com/reference/getlatestbalance.md): Ensure that you have enough available balance before executing a create payout request.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#retrieve-your-balance-and-last-transaction-date-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/ge0mylf/retrieve-balance?ctx=documentation).
+- [Create bank account verification request](https://developer.peachpayments.com/reference/createbankaccountverificationrequest.md): Start a bank account verification request.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#create-bank-account-verification-request-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/13324425-1e82710e-b448-4459-be45-bd947fb4e9cf).
+- [Query bank verification result](https://developer.peachpayments.com/reference/getbankverificationresult.md): Retrieve the result of a previously created bank verification request.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#query-bank-verification-result-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/13324425-94b991cd-1245-4cd6-a33b-5b5740c635f1).
+- [Bank account verification update webhook](https://developer.peachpayments.com/reference/post_bankverificationupdated.md): Called by Peach Payments to notify of a bank account verification update.
+- [Upload bulk payout file](https://developer.peachpayments.com/reference/uploadbulkpayoutfile.md): Upload an XLSX file containing multiple payouts for bulk processing. The file will be processed asynchronously, and the bulk upload status can be tracked using the returned bulk payout ID.  The XLSX file should contain columns for: currency, bankName, payoutMethod, amount, accountNumber, branchCode, reference, accountHolder.  The file might also include an optional `notifyEmail` column. When provided, it should contain one or more comma-separated email addresses. These recipients will receive the existing proof-of-payout email with PDF attachment once the payout succeeds. The file might also include an optional `merchantReference` column.
+- [Get today's bulk payout uploads for a merchant](https://developer.peachpayments.com/reference/listbulkpayoutuploads.md): Returns all bulk payout uploads created today. No filtering or searching is supported; only today's uploads are returned.
+- [Get error file URL for a bulk payout upload](https://developer.peachpayments.com/reference/getbulkpayouterrorfile.md): Returns a presigned URL to download the error file for a specific bulk upload, if available.
+- [Create payout request](https://developer.peachpayments.com/reference/createpayoutrequest.md): The API supports multiple payouts in a payout request. For multiple payouts, include them in the same payout request rather than creating a payout request for each.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#create-payout-request-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/cc3tzt6/create-payouts?ctx=documentation).
+- [List payout requests](https://developer.peachpayments.com/reference/listpayoutrequests.md): See all your payouts and payout requests.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#list-payout-requests-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/l6hl43m/list-payouts?ctx=documentation).
+- [Query payout request](https://developer.peachpayments.com/reference/querypayoutrequest.md): Query the status of the payouts within the request.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#query-payout-request-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/apzgpk8/query-payout?ctx=documentation).
+- [Download proof of payout](https://developer.peachpayments.com/reference/downloadproofofpayout.md): Build and return a proof of payout PDF for a specific payout.
+- [Email proof of payout](https://developer.peachpayments.com/reference/emailproofofpayout.md): Create and send a proof of payout PDF by email to the specified recipients. Only successful payouts are supported; merchant recon email is added as CC.
+- [Payout status update webhook](https://developer.peachpayments.com/reference/post_payoutstatusupdated.md): Called by Peach Payments to notify of payout status updates.
+- [Payouts transaction report](https://developer.peachpayments.com/reference/downloadtransactionreport.md): Download a CSV file containing the payout transaction report.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#download-payouts-transaction-report-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/07kf0xy/transaction-report?ctx=documentation).
+- [Payouts statement report](https://developer.peachpayments.com/reference/downloadstatementreport.md): Download a CSV file containing the payout statement report.  For more information, see the [documentation](https://developer.peachpayments.com/docs/payouts-api-1#download-payouts-statement-report-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/fghnnno/statement-report?ctx=documentation).
+- [Query current webhook endpoints](https://developer.peachpayments.com/reference/getwebhookendpoints.md): Returns the configured webhook endpoints for payouts and bank account verification notifications.
+- [Create or update webhook endpoints](https://developer.peachpayments.com/reference/updatewebhookendpoints.md): Create, update, or remove pre-configured webhook endpoints for payouts and bank account verification notifications, and configure which notification types are sent to the payouts webhook URL.
+- [Float top-up webhook](https://developer.peachpayments.com/reference/post_floatallocationupdated.md): Called by Peach Payments when a deposit is allocated to your float (same configured payouts webhook URL as payout status updates). Only sent when `webhookOptions.floatAllocationUpdates` is enabled. See the [update webhook endpoints](https://developer.peachpayments.com/reference/updatewebhookendpoints) API for more details.
+- [List transactions-recon](https://developer.peachpayments.com/reference/get_api-merchants-merchantid-transactions-recon.md): List transactions for a merchant's reconciliation processes.  - Rate limit: One request per second - Date limit: Cannot query transactions before 1 January 2023 - Date range limit: Cannot query transactions on a date range longer than 24 hours per request  For more information, see the [documentation](https://developer.peachpayments.com/docs/bus-ops-recon-api#/list-transactions-reconciliation-flow), and for sample calls, see the [public Postman collection](https://www.postman.com/peachpayments/peach-payments-public-workspace/request/knra3bn/recon-public?action=share&creator=20323380&ctx=documentation&active-environment=13324425-4d2ac6d5-12c6-4386-b5a9-605d38682519).
+
+## Changelog
+- [Embedded Express - capture Apple Pay shipping address](https://developer.peachpayments.com/changelog/checkout-express-shipping-2026-07-16.md)
+- [Reconciliation tip amount](https://developer.peachpayments.com/changelog/reconciliation-tip-amount-2026-06-30.md)
+- [SME onboarding ultimate beneficial owner verification](https://developer.peachpayments.com/changelog/sme-onboarding-ubo-2026-06-25.md)
+- [Embedded Checkout - Embedded Express](https://developer.peachpayments.com/changelog/checkout-embedded-express-2026-06-04.md)
+- [Mobile SDK V2](https://developer.peachpayments.com/changelog/mobile-sdk-v2-2026-05-29.md)

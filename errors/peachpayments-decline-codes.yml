@@ -1,0 +1,66 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.peachpayments.com/docs/dashboard-response-codes
+envelope:
+  field: result.code
+  companion: result.description
+  format: ddd.ddd.ddd
+  notes: >-
+    Peach Payments / OPPWA result codes are grouped by the first block: 000.* =
+    success or review, 000.200.* = pending, 800.* = bank / issuer decline and
+    external-risk. The full success list is not reproduced here; captured below
+    are the pending and rejected/declined groups a buyer or integration acts on.
+    Bank decline reasons (800.100.*) are typically masked to buyers as a generic
+    "transaction declined".
+success_examples:
+  - code: 000.000.000
+    meaning: Transaction succeeded
+  - code: 000.100.110
+    meaning: Request successfully processed in test system
+  - code: 000.300.000
+    meaning: Two-step transaction succeeded
+review:
+  - code: 000.400.000
+    meaning: Transaction succeeded (please review manually due to fraud suspicion)
+  - code: 000.400.010
+    meaning: Transaction succeeded (please review manually due to AVS return code)
+  - code: 000.400.100
+    meaning: Transaction succeeded, risk after payment rejected
+pending:
+  - code: 000.200.000
+    meaning: Transaction pending
+  - code: 000.200.100
+    meaning: Successfully created checkout
+  - code: 100.400.500
+    meaning: Waiting for external risk review
+  - code: 800.400.500
+    meaning: Waiting for confirmation of non-instant payment
+decline_codes:
+  - code: 000.400.101
+    meaning: Card not participating / authentication unavailable (3DS)
+    action: Retry with an enrolled card or fall back per 3DS policy.
+    masked_to_buyer: false
+  - code: 000.400.106
+    meaning: Invalid payer authentication response (PARes) in 3-D Secure
+    action: Restart the 3DS authentication flow.
+    masked_to_buyer: false
+  - code: 000.400.109
+    meaning: Card is not enrolled for 3DS version 2
+    action: Use an enrolled test/live card or force enrollment via parameters.
+    masked_to_buyer: false
+  - code: 800.100.151
+    meaning: Transaction declined (invalid card)
+    action: Ask the buyer to use a different card.
+    masked_to_buyer: true
+  - code: 800.100.153
+    meaning: Transaction declined (invalid CVV)
+    action: Ask the buyer to re-enter the CVV.
+    masked_to_buyer: true
+  - code: 800.100.155
+    meaning: Transaction declined (amount exceeds credit)
+    action: Ask the buyer to use another payment method.
+    masked_to_buyer: true
+  - code: 800.100.203
+    meaning: Insufficient funds
+    action: Ask the buyer to use another card / method.
+    masked_to_buyer: true

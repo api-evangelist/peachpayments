@@ -1,0 +1,20 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/peachpayments-openapi.yml + conventions/ + errors/
+notes: >-
+  Packaged Agent Skills, one per marquee Peach Payments flow. Every step is
+  grounded in a real operationId from openapi/peachpayments-openapi.yml. No
+  provider-published AGENTS.md / skill files were found.
+skills:
+  - file: peachpayments-authenticate-and-checkout.md
+    name: Authenticate and create a checkout
+    api: openapi/peachpayments-openapi.yml
+    operations: [createAccessToken, getPaymentMethodsForCurrency, createCheckout, getCheckoutStatus]
+  - file: peachpayments-server-to-server-payment.md
+    name: Take a server-to-server payment and refund it
+    api: openapi/peachpayments-openapi.yml
+    operations: [createPayment, getPaymentStatus]
+  - file: peachpayments-payout-with-verification.md
+    name: Verify a bank account and pay out
+    api: openapi/peachpayments-openapi.yml
+    operations: [createAccessToken, verifyBankAccount, createPayout, getPayout]

@@ -1,0 +1,29 @@
+generated: '2026-07-17'
+method: searched
+source: live /.well-known/ probes 2026-07-17
+notes: >-
+  No /.well-known/ discovery documents are published on the Peach Payments
+  corporate, developer, or dashboard hosts. security.txt, OIDC discovery,
+  RFC 8414 authorization-server metadata, api-catalog, and ai-plugin.json all
+  return 404. The OAuth 2.0 client-credentials token endpoint is documented at
+  /api/oauth/token rather than via well-known discovery. Absence recorded as
+  valid data.
+probes:
+  - host: https://www.peachpayments.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+  - host: https://developer.peachpayments.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://dashboard.peachpayments.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404

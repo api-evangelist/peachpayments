@@ -1,0 +1,58 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://developer.peachpayments.com llms.txt + SDK reference pages; GitHub /
+  npm registry search for first-party client libraries.
+notes: >-
+  Peach Payments ships first-party client SDKs for embedded checkout and native
+  mobile (iOS / Android), distributed through its own developer docs and sample
+  projects rather than a public server-side package on npm/PyPI/Packagist. The
+  server-to-server, Checkout, Payouts, and Reconciliation REST APIs are consumed
+  directly (or via the public Postman collection); no official server-side SDK
+  (Node/PHP/Python) was found. Several community-maintained libraries exist and
+  are recorded with official:false. The org github.com/peach-payments hosts an
+  unrelated Hyperswitch fork and is NOT a first-party Peach Payments SDK source.
+packages:
+  - language: javascript
+    registry: cdn
+    name: Embedded Checkout SDK (checkout.js)
+    url: https://developer.peachpayments.com/docs/checkout-embedded-sdk-reference
+    install: script include of the Peach Payments Embedded Checkout SDK
+    official: true
+    notes: >-
+      Client-side JS SDK that renders the Embedded / Embedded Express checkout
+      widget from a checkoutId. Documented reference + web, React Native, and
+      Flutter tutorials.
+  - language: swift
+    registry: cocoapods
+    name: Peach Payments Mobile SDK (iOS)
+    url: https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk
+    install: CocoaPods podspec from Peach Payments Mobile SDK download page
+    official: true
+    notes: >-
+      Native iOS Mobile SDK (OPPWA) with ready-to-use UI, 3-D Secure 2, and
+      fraud management. Distributed via the SDK download page + podspecs.
+  - language: kotlin
+    registry: android
+    name: Peach Payments Mobile SDK (Android)
+    url: https://developer.peachpayments.com/docs/oppwa-integrations-mobile-sdk
+    install: Android Mobile SDK artifact from the download page
+    official: true
+    notes: >-
+      Native Android Mobile SDK (OPPWA) with ready-to-use UI, 3-D Secure 2,
+      and fraud management.
+  - language: php
+    registry: packagist
+    name: peach-payments (community, flickerleap)
+    url: https://github.com/flickerleap/peach-payments
+    official: false
+  - language: php
+    registry: packagist
+    name: PeachPayment (community, io-digital, Laravel)
+    url: https://github.com/io-digital/PeachPayment
+    official: false
+  - language: javascript
+    registry: npm
+    name: peach-payments (community, unmaintained)
+    url: https://www.npmjs.com/package/peach-payments
+    official: false

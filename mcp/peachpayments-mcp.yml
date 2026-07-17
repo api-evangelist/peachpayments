@@ -1,0 +1,52 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/peachpayments-openapi.yml
+notes: >-
+  No official hosted / remote Peach Payments MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries checked 2026-07-17). The tool list below
+  is a CANDIDATE derived one-to-one from the modeled OpenAPI operations, to seed
+  a future MCP server. Not published by the provider.
+server:
+  name: peachpayments
+  transport: http
+tools:
+  - name: create_access_token
+    description: Exchange clientId, clientSecret, and merchantId for a Bearer access_token.
+    source_operation: openapi/peachpayments-openapi.yml#createAccessToken
+  - name: create_checkout
+    description: Create a Hosted / Embedded checkout session.
+    source_operation: openapi/peachpayments-openapi.yml#createCheckout
+  - name: get_checkout_status
+    description: Query the status and result of a checkout session.
+    source_operation: openapi/peachpayments-openapi.yml#getCheckoutStatus
+  - name: get_payment_methods_for_currency
+    description: List available payment methods for a currency / channel.
+    source_operation: openapi/peachpayments-openapi.yml#getPaymentMethodsForCurrency
+  - name: create_payment
+    description: Server-to-server debit (DB) or refund (RF) transaction.
+    source_operation: openapi/peachpayments-openapi.yml#createPayment
+  - name: get_payment_status
+    description: Query the status of a server-to-server payment.
+    source_operation: openapi/peachpayments-openapi.yml#getPaymentStatus
+  - name: create_payment_link
+    description: Generate a shareable single-use payment link for a channel.
+    source_operation: openapi/peachpayments-openapi.yml#createPaymentLink
+  - name: list_payment_links
+    description: List payment links for a channel.
+    source_operation: openapi/peachpayments-openapi.yml#listPaymentLinks
+  - name: cancel_payment_link
+    description: Cancel an outstanding payment link.
+    source_operation: openapi/peachpayments-openapi.yml#cancelPaymentLink
+  - name: create_payout
+    description: Initiate a merchant payout / disbursement.
+    source_operation: openapi/peachpayments-openapi.yml#createPayout
+  - name: get_payout
+    description: Retrieve the status of a payout.
+    source_operation: openapi/peachpayments-openapi.yml#getPayout
+  - name: verify_bank_account
+    description: Start a bank account verification request.
+    source_operation: openapi/peachpayments-openapi.yml#verifyBankAccount
+  - name: get_transactions_reconciliation
+    description: Retrieve reconciled transaction / settlement records over a date range.
+    source_operation: openapi/peachpayments-openapi.yml#getTransactionsReconciliation

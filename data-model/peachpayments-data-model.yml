@@ -1,0 +1,67 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/peachpayments-openapi.yml
+notes: >-
+  Entity graph derived from OpenAPI request/response schemas and id-reference
+  fields. Peach Payments is orchestration-centric: most entities belong to a
+  merchant channel identified by entityId (with a parent merchantId).
+entities:
+  - name: AccessToken
+    id_field: access_token
+    fields: [access_token, expires_in, token_type]
+    notes: Issued from clientId + clientSecret + merchantId.
+  - name: Checkout
+    id_field: checkoutId
+    fields: [checkoutId, amount, currency, paymentBrand, result, nonce, merchantTransactionId]
+  - name: Payment
+    id_field: id
+    fields: [id, merchantTransactionId, amount, currency, paymentBrand, paymentType, result, virtualAccount]
+  - name: PaymentLink
+    id_field: paymentId
+    fields: [paymentId, url, status, amount, currency, expiresAt]
+  - name: Payout
+    id_field: payoutId
+    fields: [payoutId, status, amount, currency, beneficiary, merchantReference]
+  - name: BankAccountVerification
+    id_field: (verification request id)
+    fields: [accountNumber, bankCode, accountHolder, idNumber]
+  - name: ReconciliationReport
+    id_field: merchantId+startDate+endDate
+    fields: [merchantId, startDate, endDate, transactions]
+  - name: Result
+    id_field: code
+    fields: [code, description]
+    notes: OPPWA result envelope embedded in checkout/payment responses.
+relationships:
+  - from: Checkout
+    to: Merchant
+    kind: belongs_to
+    via: authentication.entityId
+  - from: Payment
+    to: Merchant
+    kind: belongs_to
+    via: authentication.entityId
+  - from: PaymentLink
+    to: Merchant
+    kind: belongs_to
+    via: entityId (path)
+  - from: ReconciliationReport
+    to: Merchant
+    kind: belongs_to
+    via: merchantId (path)
+  - from: Checkout
+    to: Result
+    kind: has_one
+    via: result
+  - from: Payment
+    to: Result
+    kind: has_one
+    via: result
+  - from: Payout
+    to: BankAccountVerification
+    kind: has_one
+    via: beneficiary bank account (verified before payout)
+identifiers:
+  entityId: Merchant channel identifier (scopes currency + payment methods).
+  merchantId: Parent merchant identifier (OAuth + reconciliation).
+  merchantTransactionId: Merchant-assigned 8-16 alphanumeric transaction reference.

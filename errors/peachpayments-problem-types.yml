@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/peachpayments-openapi.yml
+format: provider-result-envelope
+envelope:
+  fields: [result.code, result.description]
+  notes: >-
+    Peach Payments does not use RFC 9457 application/problem+json. API-level
+    failures surface as an HTTP status code plus, for payment operations, an
+    OPPWA result envelope (result.code / result.description, ddd.ddd.ddd format;
+    000.000.* = success). See errors/peachpayments-decline-codes.yml for the
+    result-code registry.
+problems:
+  - status: 400
+    title: Bad request
+    detail: Malformed or missing required parameters (amount, currency, nonce, entityId).
+    source_operation: openapi/peachpayments-openapi.yml#createCheckout
+  - status: 401
+    title: Invalid client credentials
+    detail: clientId / clientSecret / merchantId rejected at the OAuth token endpoint.
+    source_operation: openapi/peachpayments-openapi.yml#createAccessToken
+  - status: 401
+    title: Unauthorised
+    detail: Missing, expired, or invalid Bearer access_token.
+    source_operation: openapi/peachpayments-openapi.yml#createCheckout
+  - status: 403
+    title: Forbidden
+    detail: >-
+      Observed on bare GET against payment hosts (api-v2 / secure / payouts);
+      endpoints require Bearer/entityId-gated POST.
+    source_operation: live probe 2026-07-17

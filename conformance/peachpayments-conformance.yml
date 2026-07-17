@@ -1,0 +1,44 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  openapi/peachpayments-openapi.yml + https://developer.peachpayments.com docs
+  (PCI DSS, 3-D Secure) + https://www.peachpayments.com/security
+standards:
+  - id: pci-dss
+    conforms: true
+    level: Level 1
+    evidence: >-
+      PCI DSS Level 1 certified card platform (OPPWA); PCI DSS v4.0 guidance
+      published. https://developer.peachpayments.com/docs/oppwa-guides-pci-dss
+  - id: 3d-secure-2
+    conforms: true
+    evidence: >-
+      3-D Secure 2 supported for card authentication (SCA) with a documented
+      testing guide. https://developer.peachpayments.com/docs/oppwa-guides-3-d-secure
+  - id: oauth2-client-credentials
+    conforms: true
+    evidence: >-
+      OAuth 2.0 client-credentials token endpoint POST /api/oauth/token
+      (clientId + clientSecret + merchantId -> Bearer access_token).
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery or openIdConnect scheme published.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are conveyed via HTTP status plus an OPPWA result envelope
+      (result.code / result.description), not application/problem+json.
+  - id: psd2
+    conforms: false
+    evidence: African market (ZA/KE/MU); PSD2 (EU) not applicable.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI security profile declared.
+  - id: idempotency-key
+    conforms: false
+    evidence: >-
+      No RFC-style Idempotency-Key header documented; merchantTransactionId is
+      the merchant-side correlation/dedup key.
+  - id: iso-4217-currency
+    conforms: true
+    evidence: Amounts use ISO-4217 three-letter currency codes (ZAR, KES, MUR).

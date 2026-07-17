@@ -144,20 +144,76 @@ common:
   url: agentic-access/peachpayments-agentic-access.yml
 - type: TrustCenter
   url: security/peachpayments-trust-center.yml
+- type: Compliance
+  url: security/peachpayments-trust-center.yml
 - type: VulnerabilityDisclosure
+  url: security/peachpayments-vulnerability-disclosure.yml
+- type: Security
   url: security/peachpayments-vulnerability-disclosure.yml
 - type: DomainSecurity
   url: security/peachpayments-domain-security.yml
 - type: Authentication
   url: authentication/peachpayments-authentication.yml
-- type: GitHubOrganization
-  url: https://github.com/peach-payments
+- type: Packages
+  url: packages/peachpayments-packages.yml
+- type: SDKs
+  url: packages/peachpayments-packages.yml
+- type: LLMsTxt
+  url: llms/peachpayments-llms.txt
+- type: Overlay
+  url: overlays/peachpayments-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/peachpayments-conformance.yml
+- type: ErrorCatalog
+  url: errors/peachpayments-problem-types.yml
+- type: DeclineCodes
+  url: errors/peachpayments-decline-codes.yml
+- type: Lifecycle
+  url: lifecycle/peachpayments-lifecycle.yml
+- type: StatusPage
+  url: https://status.peachpayments.com
+- type: Sandbox
+  url: sandbox/peachpayments-sandbox.yml
+- type: Conventions
+  url: conventions/peachpayments-conventions.yml
+- type: ChangeLog
+  url: changelog/peachpayments-changelog.yml
+- type: Components
+  url: components/peachpayments-components.yml
+- type: DataModel
+  url: data-model/peachpayments-data-model.yml
+- type: Webhooks
+  url: asyncapi/peachpayments-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/peach-payments
 - type: Website
   url: https://www.peachpayments.com/
+- type: DeveloperPortal
+  url: https://developer.peachpayments.com/
 - type: Documentation
   url: https://developer.peachpayments.com/
+- type: APIReference
+  url: https://developer.peachpayments.com/reference
+- type: GettingStarted
+  url: https://developer.peachpayments.com/docs/product-portfolio-overview
+- type: Support
+  url: https://www.peachpayments.com/contact
+- type: Blog
+  url: https://www.peachpayments.com/scale
+- type: Pricing
+  url: https://www.peachpayments.com/fees
+- type: SignUp
+  url: https://www.peachpayments.com/get-started
+- type: Login
+  url: https://dashboard.peachpayments.com
+- type: TermsOfService
+  url: https://www.peachpayments.com/legal
+- type: PrivacyPolicy
+  url: https://www.peachpayments.com/legal
+- type: Postman
+  url: https://www.postman.com/peachpayments/peach-payments-public-workspace
 - type: Plans
   url: plans/peachpayments-plans-pricing.yml
 - type: RateLimits

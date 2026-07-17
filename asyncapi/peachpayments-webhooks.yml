@@ -1,0 +1,53 @@
+generated: '2026-07-17'
+method: searched
+type: Webhooks
+source: >-
+  https://developer.peachpayments.com/docs/reference-webhooks +
+  https://developer.peachpayments.com/docs/checkout-webhooks +
+  https://developer.peachpayments.com/docs/payment-links-webhooks
+notes: >-
+  Peach Payments documents webhooks but publishes no AsyncAPI document. This
+  artifact captures the webhook catalog. Webhooks are configured per product in
+  the Dashboard ("Add webhook URL"); the endpoint must return HTTP 200 and use
+  HTTPS in live.
+delivery:
+  transport: HTTP POST to merchant-configured URL
+  ack: HTTP 200 required
+  retry_window_days: 30
+  backoff: exponential (2, 4, 8, 15, 30 minutes, then hourly)
+  ordering: not guaranteed; order events by the payload timestamp field
+security:
+  signing: HMAC-SHA256 (opt-in via support request)
+  headers:
+    - x-webhook-signature-algorithm
+    - x-webhook-timestamp
+    - x-webhook-id
+    - x-webhook-signature
+  signature_message: '{timestamp}.{webhookId}.{url}.{payload}'
+  replay_protection: x-webhook-id correlates and de-duplicates deliveries
+channels:
+  - product: Checkout
+    docs: https://developer.peachpayments.com/docs/checkout-webhooks
+    events:
+      - status: created
+        description: A Checkout instance launched and the session initiated.
+      - status: pending
+        description: Payment initiated; awaiting customer completion.
+      - status: successful
+        description: Customer completed a payment, or a refund succeeded (final).
+      - status: uncertain
+        description: Possible cancellation / 30-minute timeout (final).
+      - status: cancelled
+        description: Customer cancelled the payment (final).
+  - product: Payment Links
+    docs: https://developer.peachpayments.com/docs/payment-links-webhooks
+    events:
+      - status: transaction status change
+        description: Payment link paid / status transition notifications.
+  - product: Payouts
+    docs: https://developer.peachpayments.com/docs/payouts-release-notes
+    events:
+      - status: bank account verification update
+        description: Notifies of a bank account verification result (bankVerificationUpdated).
+      - status: float allocation update
+        description: Optional payout float-allocation notifications (toggle).
