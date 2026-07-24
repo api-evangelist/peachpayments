@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  title: Peach Payments Authentication Checkout API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  version: '1.0'
+  contact:
+    name: Peach Payments Developer Support
+    url: https://developer.peachpayments.com
+  termsOfService: https://www.peachpayments.com/terms-and-conditions
+servers:
+- url: https://sandbox-dashboard.peachpayments.com
+  description: Sandbox authentication host (OAuth token)
+- url: https://dashboard.peachpayments.com
+  description: Live authentication host (OAuth token)
+tags:
+- name: Checkout
+  description: Hosted, Embedded, and Embedded Express checkout sessions.
+paths:
+  /v2/checkout:
+    servers:
+    - url: https://testsecure.peachpayments.com
+      description: Sandbox Checkout host
+    - url: https://secure.peachpayments.com
+      description: Live Checkout host
+    post:
+      operationId: createCheckout
+      tags:
+      - Checkout
+      summary: Create a checkout session.
+      description: Create a Hosted or Embedded checkout instance. Requires a Bearer access_token, the entityId, a unique nonce, amount, and currency (e.g. ZAR, KES, MUR). Returns a checkoutId used to render the hosted page or embed the widget.
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+      responses:
+        '200':
+          description: Checkout created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '400':
+          description: Bad request.
+        '401':
+          description: Unauthorised.
+  /v2/checkout/{checkoutId}:
+    servers:
+    - url: https://testsecure.peachpayments.com
+    - url: https://secure.peachpayments.com
+    get:
+      operationId: getCheckoutStatus
+      tags:
+      - Checkout
+      summary: Query checkout status.
+      description: Retrieve the current status and result of a checkout session.
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: checkoutId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Checkout status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutStatusResponse'
+        '404':
+          description: Checkout not found or expired.
+  /merchant-specs:
+    servers:
+    - url: https://testsecure.peachpayments.com
+    - url: https://secure.peachpayments.com
+    post:
+      operationId: getPaymentMethodsForCurrency
+      tags:
+      - Checkout
+      summary: Retrieve payment methods for a currency.
+      description: Return the list of enabled payment methods and the merchant ID for a channel (entityId) given a particular currency.
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantSpecsRequest'
+      responses:
+        '200':
+          description: Available payment methods.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantSpecsResponse'
+components:
+  schemas:
+    MerchantSpecsResponse:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        paymentMethods:
+          type: array
+          items:
+            type: string
+    CheckoutRequest:
+      type: object
+      required:
+      - authentication
+      - amount
+      - currency
+      - nonce
+      - shopperResultUrl
+      properties:
+        authentication:
+          type: object
+          properties:
+            entityId:
+              type: string
+        amount:
+          type: string
+          example: '100.00'
+        currency:
+          type: string
+          example: ZAR
+        nonce:
+          type: string
+          description: Unique value per request.
+        shopperResultUrl:
+          type: string
+          format: uri
+        merchantTransactionId:
+          type: string
+        paymentType:
+          type: string
+          enum:
+          - DB
+          - RF
+    CheckoutResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
+    CheckoutStatusResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
+    MerchantSpecsRequest:
+      type: object
+      required:
+      - authentication
+      - currency
+      properties:
+        authentication:
+          type: object
+          properties:
+            entityId:
+              type: string
+        currency:
+          type: string
+          example: ZAR
+    Result:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth 2.0 access_token obtained from POST /api/oauth/token, sent as Authorization: Bearer {access_token}.'

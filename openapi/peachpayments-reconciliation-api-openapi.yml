@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Peach Payments Authentication Reconciliation API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  version: '1.0'
+  contact:
+    name: Peach Payments Developer Support
+    url: https://developer.peachpayments.com
+  termsOfService: https://www.peachpayments.com/terms-and-conditions
+servers:
+- url: https://sandbox-dashboard.peachpayments.com
+  description: Sandbox authentication host (OAuth token)
+- url: https://dashboard.peachpayments.com
+  description: Live authentication host (OAuth token)
+tags:
+- name: Reconciliation
+  description: Settlement and transaction reconciliation reporting.
+paths:
+  /api/merchants/{merchantId}/transactions-recon:
+    servers:
+    - url: https://sandbox-reconciliation.ppay.io
+      description: Sandbox Reconciliation host
+    - url: https://reconciliation.peachpayments.com
+      description: Live Reconciliation host
+    get:
+      operationId: getTransactionsReconciliation
+      tags:
+      - Reconciliation
+      summary: Retrieve transaction reconciliation.
+      description: Return reconciled transaction and settlement records for a merchant over a date range.
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: merchantId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Reconciliation records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationResponse'
+components:
+  schemas:
+    ReconciliationResponse:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        transactions:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth 2.0 access_token obtained from POST /api/oauth/token, sent as Authorization: Bearer {access_token}.'

@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Peach Payments Authentication API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  version: '1.0'
+  contact:
+    name: Peach Payments Developer Support
+    url: https://developer.peachpayments.com
+  termsOfService: https://www.peachpayments.com/terms-and-conditions
+servers:
+- url: https://sandbox-dashboard.peachpayments.com
+  description: Sandbox authentication host (OAuth token)
+- url: https://dashboard.peachpayments.com
+  description: Live authentication host (OAuth token)
+tags:
+- name: Authentication
+  description: OAuth 2.0 token generation for Checkout, Payouts, and Reconciliation.
+paths:
+  /api/oauth/token:
+    post:
+      operationId: createAccessToken
+      tags:
+      - Authentication
+      summary: Generate an OAuth access token.
+      description: Exchange clientId, clientSecret, and merchantId for a short-lived Bearer access_token used by the Checkout, Payouts, and Reconciliation APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthTokenResponse'
+        '401':
+          description: Invalid client credentials.
+components:
+  schemas:
+    OAuthTokenRequest:
+      type: object
+      required:
+      - clientId
+      - clientSecret
+      - merchantId
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+        merchantId:
+          type: string
+    OAuthTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Token validity in seconds.
+        token_type:
+          type: string
+          example: Bearer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'OAuth 2.0 access_token obtained from POST /api/oauth/token, sent as Authorization: Bearer {access_token}.'
