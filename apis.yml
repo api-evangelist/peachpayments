@@ -8,7 +8,20 @@ description: Peach Payments is a pan-African payment orchestration gateway found
   Embedded, Embedded Express), server-to-server Payments, Payment Links, Payouts,
   and Reconciliation, supporting cards plus local methods like PayShap, Capitec
   Pay, 1Voucher, Mobicred, M-PESA, and MauCAS in ZAR, KES, and MUR.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/peachpayments.png
 tags:
 - Payments
 - Fintech
@@ -22,124 +35,163 @@ specificationVersion: '0.19'
 apis:
 - aid: peachpayments:peachpayments-authentication-api
   name: Peach Payments Authentication API
-  tags:
-  - OAuth
-  - Authentication
-  - Token
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: OAuth 2.0 token generation for Checkout, Payouts, and Reconciliation.
   humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
   baseURL: https://dashboard.peachpayments.com
+  tags:
+  - Authentication
   properties:
-  - url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
-    type: Documentation
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  description: OAuth 2.0 client-credentials token endpoint (POST /api/oauth/token)
-    that exchanges clientId, clientSecret, and merchantId for a short-lived Bearer
-    access_token used across Checkout, Payouts, and Reconciliation. Sandbox host
-    sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com.
+  - type: OpenAPI
+    url: openapi/peachpayments-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 - aid: peachpayments:peachpayments-checkout-api
   name: Peach Payments Checkout API
+  description: Hosted, Embedded, and Embedded Express checkout sessions.
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
   tags:
   - Checkout
-  - Hosted
-  - Embedded
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.peachpayments.com/docs/checkout-overview
-  baseURL: https://secure.peachpayments.com
   properties:
-  - url: https://developer.peachpayments.com/docs/checkout-overview
-    type: Documentation
-  - url: https://developer.peachpayments.com/reference/payment
-    type: APIReference
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  - url: collections/peachpayments.postman_collection.json
-    type: PostmanCollection
-  description: Create Hosted, Embedded, and Embedded Express checkout sessions
-    (POST /v2/checkout), query status, and list available payment methods per
-    currency. Bearer-token authenticated with an entityId and per-request nonce.
-    Sandbox host testsecure.peachpayments.com; live host secure.peachpayments.com.
-- aid: peachpayments:peachpayments-payments-api
-  name: Peach Payments Payments API
-  tags:
-  - Payments
-  - Server to Server
-  - Refunds
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.peachpayments.com/reference/payment
-  baseURL: https://api-v2.peachpayments.com
-  properties:
-  - url: https://developer.peachpayments.com/docs/payments-api-flows
-    type: Documentation
-  - url: https://developer.peachpayments.com/reference/payment
-    type: APIReference
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  - url: collections/peachpayments.postman_collection.json
-    type: PostmanCollection
-  description: Server-to-server debit (DB) and refund (RF) transactions across
-    cards and local African brands including PayShap, Capitec Pay, 1Voucher,
-    Mobicred, RCS, M-PESA, blink by Emtel, MCB Juice, and MauCAS. Authenticated
-    with an inline userId/password/entityId object. Sandbox host
-    testapi-v2.peachpayments.com; live host api-v2.peachpayments.com.
+  - type: OpenAPI
+    url: openapi/peachpayments-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 - aid: peachpayments:peachpayments-payment-links-api
   name: Peach Payments Payment Links API
+  description: Shareable, single-use and bulk payment links.
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
   tags:
   - Payment Links
-  - Invoicing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.peachpayments.com/docs/payment-links-overview
-  baseURL: https://links.peachpayments.com
   properties:
-  - url: https://developer.peachpayments.com/docs/payment-links-overview
-    type: Documentation
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  - url: collections/peachpayments.postman_collection.json
-    type: PostmanCollection
-  description: Generate, list, and cancel shareable single-use and bulk payment
-    links for a channel (entityId). Bearer-token authenticated. Sandbox host
-    testapi.peachpayments.com.
+  - type: OpenAPI
+    url: openapi/peachpayments-payment-links-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
+- aid: peachpayments:peachpayments-payments-api
+  name: Peach Payments Payments API
+  description: Server-to-server debit and refund transactions.
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/peachpayments-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 - aid: peachpayments:peachpayments-payouts-api
   name: Peach Payments Payouts API
+  description: Merchant-initiated payouts and bank account verification.
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
   tags:
   - Payouts
-  - Disbursements
-  - Bank Verification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.peachpayments.com/docs/payouts-api-1
-  baseURL: https://payouts.peachpayments.com
   properties:
-  - url: https://developer.peachpayments.com/docs/payouts-api-1
-    type: Documentation
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  - url: collections/peachpayments.postman_collection.json
-    type: PostmanCollection
-  description: Merchant-initiated payouts, bank account verification, and bulk
-    payout processing with proof-of-payout PDFs. OAuth Bearer authenticated.
-    Sandbox host sandbox-payouts.peachpayments.com; live host
-    payouts.peachpayments.com.
+  - type: OpenAPI
+    url: openapi/peachpayments-payouts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 - aid: peachpayments:peachpayments-reconciliation-api
   name: Peach Payments Reconciliation API
+  description: Settlement and transaction reconciliation reporting.
+  humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  baseURL: https://dashboard.peachpayments.com
   tags:
   - Reconciliation
-  - Settlement
-  - Reporting
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.peachpayments.com/docs/bus-ops-recon-api
-  baseURL: https://reconciliation.peachpayments.com
   properties:
-  - url: https://developer.peachpayments.com/docs/bus-ops-recon-api
-    type: Documentation
-  - url: openapi/peachpayments-openapi.yml
-    type: OpenAPI
-  description: Settlement and transaction reconciliation reporting
-    (GET /api/merchants/{merchantId}/transactions-recon over a date range).
-    OAuth Bearer authenticated. Sandbox host sandbox-reconciliation.ppay.io;
-    live host reconciliation.peachpayments.com.
+  - type: OpenAPI
+    url: openapi/peachpayments-reconciliation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-embedded-authentication
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/checkout-overview
+  - type: APIReference
+    url: https://developer.peachpayments.com/reference/payment
+  - type: PostmanCollection
+    url: collections/peachpayments.postman_collection.json
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payments-api-flows
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payment-links-overview
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/payouts-api-1
+  - type: Documentation
+    url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/peach-payments/overview
 - type: AgenticAccess
   url: agentic-access/peachpayments-agentic-access.yml
 - type: TrustCenter
