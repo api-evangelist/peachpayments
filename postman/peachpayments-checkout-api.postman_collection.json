@@ -1,0 +1,537 @@
+{
+  "info": {
+    "_postman_id": "b0870b48-f43d-4c02-a2c1-654945c0f942",
+    "name": "Peach Payments Authentication Checkout API",
+    "description": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:36.000Z",
+    "updatedAt": "2026-07-28T02:34:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b0870b48-f43d-4c02-a2c1-654945c0f942"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "checkout",
+          "item": [
+            {
+              "name": "{checkoutId}",
+              "item": [
+                {
+                  "name": "Query checkout status.",
+                  "id": "efb35510-6663-494e-bfee-51e00ee9910a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/checkout/:checkoutId?entityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "checkout",
+                        ":checkoutId"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "entityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e26dc6a-23e6-4dda-935c-007545f8b881",
+                          "key": "checkoutId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the current status and result of a checkout session."
+                  },
+                  "response": [
+                    {
+                      "id": "ab021913-2518-4f52-8d29-1295d2e50108",
+                      "name": "Checkout status.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/checkout/:checkoutId?entityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "checkout",
+                            ":checkoutId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "entityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "checkoutId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"checkoutId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"paymentBrand\": \"<string>\",\n  \"result\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-ab021913-2518-4f52-8d29-1295d2e50108"
+                    },
+                    {
+                      "id": "1ff7b736-2364-4f15-8ad2-3a26e980c52d",
+                      "name": "Checkout not found or expired.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/checkout/:checkoutId?entityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "checkout",
+                            ":checkoutId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "entityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "checkoutId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-1ff7b736-2364-4f15-8ad2-3a26e980c52d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:37.000Z",
+                  "updatedAt": "2026-07-28T02:34:37.000Z",
+                  "uid": "35240-efb35510-6663-494e-bfee-51e00ee9910a"
+                }
+              ],
+              "id": "7e3d8cb4-fdee-4040-862b-9bb2351a77f8",
+              "createdAt": "2026-07-28T02:34:37.000Z",
+              "updatedAt": "2026-07-28T02:34:37.000Z",
+              "uid": "35240-7e3d8cb4-fdee-4040-862b-9bb2351a77f8"
+            },
+            {
+              "name": "Create a checkout session.",
+              "id": "70f1b621-a830-4d8a-9eea-333196b65f5d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"merchantTransactionId\": \"<string>\",\n  \"paymentType\": \"RF\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "checkout"
+                  ]
+                },
+                "description": "Create a Hosted or Embedded checkout instance. Requires a Bearer access_token, the entityId, a unique nonce, amount, and currency (e.g. ZAR, KES, MUR). Returns a checkoutId used to render the hosted page or embed the widget."
+              },
+              "response": [
+                {
+                  "id": "cbaf3f51-5743-4b9e-b9f1-b8291eff4957",
+                  "name": "Checkout created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"merchantTransactionId\": \"<string>\",\n  \"paymentType\": \"RF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/checkout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "checkout"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"checkoutId\": \"<string>\",\n  \"result\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:34:37.000Z",
+                  "updatedAt": "2026-07-28T02:34:37.000Z",
+                  "uid": "35240-cbaf3f51-5743-4b9e-b9f1-b8291eff4957"
+                },
+                {
+                  "id": "38d14a84-1996-4abc-9cda-af3d55e95680",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"merchantTransactionId\": \"<string>\",\n  \"paymentType\": \"RF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/checkout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "checkout"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:34:37.000Z",
+                  "updatedAt": "2026-07-28T02:34:37.000Z",
+                  "uid": "35240-38d14a84-1996-4abc-9cda-af3d55e95680"
+                },
+                {
+                  "id": "b42193c1-9580-4fe8-93ab-6a0dadf1eee7",
+                  "name": "Unauthorised.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"merchantTransactionId\": \"<string>\",\n  \"paymentType\": \"RF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/checkout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "checkout"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:34:37.000Z",
+                  "updatedAt": "2026-07-28T02:34:37.000Z",
+                  "uid": "35240-b42193c1-9580-4fe8-93ab-6a0dadf1eee7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:34:37.000Z",
+              "updatedAt": "2026-07-28T02:34:37.000Z",
+              "uid": "35240-70f1b621-a830-4d8a-9eea-333196b65f5d"
+            }
+          ],
+          "id": "b66765cd-8619-4115-b693-5b52cd7954b5",
+          "createdAt": "2026-07-28T02:34:37.000Z",
+          "updatedAt": "2026-07-28T02:34:37.000Z",
+          "uid": "35240-b66765cd-8619-4115-b693-5b52cd7954b5"
+        }
+      ],
+      "id": "e9026a00-109d-433b-a56d-2929b75ec255",
+      "createdAt": "2026-07-28T02:34:37.000Z",
+      "updatedAt": "2026-07-28T02:34:37.000Z",
+      "uid": "35240-e9026a00-109d-433b-a56d-2929b75ec255"
+    },
+    {
+      "name": "merchant-specs",
+      "item": [
+        {
+          "name": "Retrieve payment methods for a currency.",
+          "id": "75321033-2445-4e70-826b-d0820bdb4bd2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/merchant-specs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchant-specs"
+              ]
+            },
+            "description": "Return the list of enabled payment methods and the merchant ID for a channel (entityId) given a particular currency."
+          },
+          "response": [
+            {
+              "id": "41d2f003-a090-4382-99bb-b1c42eda368f",
+              "name": "Available payment methods.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"entityId\": \"<string>\"\n  },\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-specs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-specs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"merchantId\": \"<string>\",\n  \"paymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T02:34:37.000Z",
+              "updatedAt": "2026-07-28T02:34:37.000Z",
+              "uid": "35240-41d2f003-a090-4382-99bb-b1c42eda368f"
+            }
+          ],
+          "createdAt": "2026-07-28T02:34:37.000Z",
+          "updatedAt": "2026-07-28T02:34:37.000Z",
+          "uid": "35240-75321033-2445-4e70-826b-d0820bdb4bd2"
+        }
+      ],
+      "id": "3f1accb3-a730-44bc-9373-0c13e8b0fd5d",
+      "createdAt": "2026-07-28T02:34:37.000Z",
+      "updatedAt": "2026-07-28T02:34:37.000Z",
+      "uid": "35240-3f1accb3-a730-44bc-9373-0c13e8b0fd5d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sandbox-dashboard.peachpayments.com"
+    }
+  ]
+}

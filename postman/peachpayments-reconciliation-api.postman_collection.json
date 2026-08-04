@@ -1,0 +1,182 @@
+{
+  "info": {
+    "_postman_id": "d323a662-a280-4119-a5fd-c4bc13b0ff3e",
+    "name": "Peach Payments Authentication Reconciliation API",
+    "description": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:48.000Z",
+    "updatedAt": "2026-07-28T02:34:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d323a662-a280-4119-a5fd-c4bc13b0ff3e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "merchants",
+          "item": [
+            {
+              "name": "{merchantId}",
+              "item": [
+                {
+                  "name": "transactions-recon",
+                  "item": [
+                    {
+                      "name": "Retrieve transaction reconciliation.",
+                      "id": "5ae3f02c-991d-4d29-a53f-cae21487ccc2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/merchants/:merchantId/transactions-recon?startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "merchants",
+                            ":merchantId",
+                            "transactions-recon"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ca224c26-e7ce-4f25-9899-0fe445ec2cd7",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Return reconciled transaction and settlement records for a merchant over a date range."
+                      },
+                      "response": [
+                        {
+                          "id": "adbf4f23-86f2-4349-8934-f03b8d87e62f",
+                          "name": "Reconciliation records.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/merchants/:merchantId/transactions-recon?startDate=<date>&endDate=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "merchants",
+                                ":merchantId",
+                                "transactions-recon"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "startDate",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "endDate",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"merchantId\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                          "createdAt": "2026-07-28T02:34:49.000Z",
+                          "updatedAt": "2026-07-28T02:34:49.000Z",
+                          "uid": "35240-adbf4f23-86f2-4349-8934-f03b8d87e62f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:49.000Z",
+                      "updatedAt": "2026-07-28T02:34:49.000Z",
+                      "uid": "35240-5ae3f02c-991d-4d29-a53f-cae21487ccc2"
+                    }
+                  ],
+                  "id": "41d6104f-57c0-46a2-b88a-9ce8d80156b1",
+                  "createdAt": "2026-07-28T02:34:49.000Z",
+                  "updatedAt": "2026-07-28T02:34:49.000Z",
+                  "uid": "35240-41d6104f-57c0-46a2-b88a-9ce8d80156b1"
+                }
+              ],
+              "id": "4afe1136-566d-4066-9fbd-04c7111105e0",
+              "createdAt": "2026-07-28T02:34:49.000Z",
+              "updatedAt": "2026-07-28T02:34:49.000Z",
+              "uid": "35240-4afe1136-566d-4066-9fbd-04c7111105e0"
+            }
+          ],
+          "id": "744e0911-b12c-440c-9a32-5e2e74e943f6",
+          "createdAt": "2026-07-28T02:34:49.000Z",
+          "updatedAt": "2026-07-28T02:34:49.000Z",
+          "uid": "35240-744e0911-b12c-440c-9a32-5e2e74e943f6"
+        }
+      ],
+      "id": "c8262a83-117e-4509-8133-66b0040b5e2c",
+      "createdAt": "2026-07-28T02:34:49.000Z",
+      "updatedAt": "2026-07-28T02:34:49.000Z",
+      "uid": "35240-c8262a83-117e-4509-8133-66b0040b5e2c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sandbox-dashboard.peachpayments.com"
+    }
+  ]
+}

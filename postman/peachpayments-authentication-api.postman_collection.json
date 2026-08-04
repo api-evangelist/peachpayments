@@ -1,0 +1,191 @@
+{
+  "info": {
+    "_postman_id": "d31bd168-53fd-4b2b-87a4-c7bf8e304154",
+    "name": "Peach Payments Authentication API",
+    "description": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:35.000Z",
+    "updatedAt": "2026-07-28T02:34:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d31bd168-53fd-4b2b-87a4-c7bf8e304154"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "oauth",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Generate an OAuth access token.",
+                  "id": "1858274b-ec66-498c-8517-43fdccde2dca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "oauth",
+                        "token"
+                      ]
+                    },
+                    "description": "Exchange clientId, clientSecret, and merchantId for a short-lived Bearer access_token used by the Checkout, Payouts, and Reconciliation APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com."
+                  },
+                  "response": [
+                    {
+                      "id": "3014ff63-aab8-4e29-93d7-4640bdf67dd7",
+                      "name": "Token issued.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "oauth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"token_type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:34:36.000Z",
+                      "updatedAt": "2026-07-28T02:34:36.000Z",
+                      "uid": "35240-3014ff63-aab8-4e29-93d7-4640bdf67dd7"
+                    },
+                    {
+                      "id": "0d7516a6-b33f-432e-bace-0fc7f87c9f74",
+                      "name": "Invalid client credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "oauth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:34:36.000Z",
+                      "updatedAt": "2026-07-28T02:34:36.000Z",
+                      "uid": "35240-0d7516a6-b33f-432e-bace-0fc7f87c9f74"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:36.000Z",
+                  "updatedAt": "2026-07-28T02:34:36.000Z",
+                  "uid": "35240-1858274b-ec66-498c-8517-43fdccde2dca"
+                }
+              ],
+              "id": "ed9935f6-b2e1-4db1-9c83-101574276fd1",
+              "createdAt": "2026-07-28T02:34:36.000Z",
+              "updatedAt": "2026-07-28T02:34:36.000Z",
+              "uid": "35240-ed9935f6-b2e1-4db1-9c83-101574276fd1"
+            }
+          ],
+          "id": "9cc362aa-c320-46a2-b2cb-e6326d292ce9",
+          "createdAt": "2026-07-28T02:34:36.000Z",
+          "updatedAt": "2026-07-28T02:34:36.000Z",
+          "uid": "35240-9cc362aa-c320-46a2-b2cb-e6326d292ce9"
+        }
+      ],
+      "id": "fe235a57-2595-41dc-af82-f722f5c0b9eb",
+      "createdAt": "2026-07-28T02:34:36.000Z",
+      "updatedAt": "2026-07-28T02:34:36.000Z",
+      "uid": "35240-fe235a57-2595-41dc-af82-f722f5c0b9eb"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sandbox-dashboard.peachpayments.com"
+    }
+  ]
+}

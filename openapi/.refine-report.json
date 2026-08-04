@@ -1,0 +1,24 @@
+{
+  "provider": "peachpayments",
+  "sources": [
+    "peachpayments-authentication-api-openapi.yml",
+    "peachpayments-checkout-api-openapi.yml",
+    "peachpayments-payment-links-api-openapi.yml",
+    "peachpayments-payments-api-openapi.yml",
+    "peachpayments-payouts-api-openapi.yml",
+    "peachpayments-reconciliation-api-openapi.yml"
+  ],
+  "outputs": [
+    "peachpayments-authentication-api-openapi.yml",
+    "peachpayments-checkout-api-openapi.yml",
+    "peachpayments-payment-links-api-openapi.yml",
+    "peachpayments-payments-api-openapi.yml",
+    "peachpayments-payouts-api-openapi.yml",
+    "peachpayments-reconciliation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

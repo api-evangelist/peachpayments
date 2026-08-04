@@ -1,0 +1,432 @@
+{
+  "info": {
+    "_postman_id": "8afc32a8-c532-480d-8261-8fe0fcba2d75",
+    "name": "Peach Payments Authentication Payment Links API",
+    "description": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:44.000Z",
+    "updatedAt": "2026-07-28T02:34:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8afc32a8-c532-480d-8261-8fe0fcba2d75"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "channels",
+          "item": [
+            {
+              "name": "{entityId}",
+              "item": [
+                {
+                  "name": "payments",
+                  "item": [
+                    {
+                      "name": "Generate a payment link.",
+                      "id": "6751ddf0-1fb8-4fd8-91b4-ae91625d3392",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"notificationUrl\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/channels/:entityId/payments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "channels",
+                            ":entityId",
+                            "payments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bfe2dd99-4cf8-4d2b-a6e0-e0616cdb336b",
+                              "key": "entityId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Create a shareable payment link for a channel (entityId). Requires a Bearer access_token, amount, currency, and an expiry."
+                      },
+                      "response": [
+                        {
+                          "id": "3e36e08e-01ed-48eb-9552-9a3f30ae96aa",
+                          "name": "Payment link created.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"notificationUrl\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/channels/:entityId/payments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "channels",
+                                ":entityId",
+                                "payments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"paymentId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"status\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:34:44.000Z",
+                          "updatedAt": "2026-07-28T02:34:44.000Z",
+                          "uid": "35240-3e36e08e-01ed-48eb-9552-9a3f30ae96aa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:44.000Z",
+                      "updatedAt": "2026-07-28T02:34:44.000Z",
+                      "uid": "35240-6751ddf0-1fb8-4fd8-91b4-ae91625d3392"
+                    },
+                    {
+                      "name": "Retrieve all payment links.",
+                      "id": "6d18efcb-4964-43f5-bea6-e1be01644bac",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/channels/:entityId/payments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "channels",
+                            ":entityId",
+                            "payments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f1b13277-4aa1-4138-8b3a-bfb6f679b2a9",
+                              "key": "entityId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List payment links for a channel (entityId)."
+                      },
+                      "response": [
+                        {
+                          "id": "2af832e7-984f-4355-aff9-b83ef83ac80e",
+                          "name": "Payment links.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/channels/:entityId/payments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "channels",
+                                ":entityId",
+                                "payments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"paymentId\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"status\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  {\n    \"paymentId\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"status\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-07-28T02:34:44.000Z",
+                          "updatedAt": "2026-07-28T02:34:44.000Z",
+                          "uid": "35240-2af832e7-984f-4355-aff9-b83ef83ac80e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:44.000Z",
+                      "updatedAt": "2026-07-28T02:34:44.000Z",
+                      "uid": "35240-6d18efcb-4964-43f5-bea6-e1be01644bac"
+                    }
+                  ],
+                  "id": "35175663-c144-4e19-8d08-3b2d4a0edb28",
+                  "createdAt": "2026-07-28T02:34:44.000Z",
+                  "updatedAt": "2026-07-28T02:34:44.000Z",
+                  "uid": "35240-35175663-c144-4e19-8d08-3b2d4a0edb28"
+                }
+              ],
+              "id": "81a8ea89-01b9-418c-8c81-0387410d0966",
+              "createdAt": "2026-07-28T02:34:44.000Z",
+              "updatedAt": "2026-07-28T02:34:44.000Z",
+              "uid": "35240-81a8ea89-01b9-418c-8c81-0387410d0966"
+            }
+          ],
+          "id": "75f17cb0-8a3d-43c5-a7a7-a18d27bb7a99",
+          "createdAt": "2026-07-28T02:34:44.000Z",
+          "updatedAt": "2026-07-28T02:34:44.000Z",
+          "uid": "35240-75f17cb0-8a3d-43c5-a7a7-a18d27bb7a99"
+        },
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "{paymentId}",
+              "item": [
+                {
+                  "name": "Cancel a payment link.",
+                  "id": "038e9c63-e45a-4c6c-a941-2e4ab5ee2514",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/payments/:paymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "payments",
+                        ":paymentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "86beddac-a68b-48d2-9dda-b52cfaadd24c",
+                          "key": "paymentId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Cancel a previously generated payment link."
+                  },
+                  "response": [
+                    {
+                      "id": "6180a942-1262-4b26-8508-68ca48027e02",
+                      "name": "Payment link cancelled.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/payments/:paymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "payments",
+                            ":paymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:34:44.000Z",
+                      "updatedAt": "2026-07-28T02:34:44.000Z",
+                      "uid": "35240-6180a942-1262-4b26-8508-68ca48027e02"
+                    },
+                    {
+                      "id": "a03f64c8-30e6-46e8-ae7c-649e81d273e6",
+                      "name": "Payment link not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/payments/:paymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "payments",
+                            ":paymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:34:44.000Z",
+                      "updatedAt": "2026-07-28T02:34:44.000Z",
+                      "uid": "35240-a03f64c8-30e6-46e8-ae7c-649e81d273e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:44.000Z",
+                  "updatedAt": "2026-07-28T02:34:44.000Z",
+                  "uid": "35240-038e9c63-e45a-4c6c-a941-2e4ab5ee2514"
+                }
+              ],
+              "id": "61e16dd4-0136-44cc-a010-55e83132912f",
+              "createdAt": "2026-07-28T02:34:44.000Z",
+              "updatedAt": "2026-07-28T02:34:44.000Z",
+              "uid": "35240-61e16dd4-0136-44cc-a010-55e83132912f"
+            }
+          ],
+          "id": "7c03c45e-9c08-45f5-9022-9a5339b3ef2b",
+          "createdAt": "2026-07-28T02:34:44.000Z",
+          "updatedAt": "2026-07-28T02:34:44.000Z",
+          "uid": "35240-7c03c45e-9c08-45f5-9022-9a5339b3ef2b"
+        }
+      ],
+      "id": "8d198137-1252-4e05-9ada-b32798d544dc",
+      "createdAt": "2026-07-28T02:34:44.000Z",
+      "updatedAt": "2026-07-28T02:34:44.000Z",
+      "uid": "35240-8d198137-1252-4e05-9ada-b32798d544dc"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sandbox-dashboard.peachpayments.com"
+    }
+  ]
+}
