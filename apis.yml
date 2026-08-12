@@ -190,6 +190,8 @@ apis:
   - type: Documentation
     url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 common:
+- type: MCPServer
+  url: mcp/peachpayments-mcp.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/peach-payments/overview
 - type: AgenticAccess
