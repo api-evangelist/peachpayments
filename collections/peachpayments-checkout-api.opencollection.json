@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Payments Authentication Checkout API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a checkout session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/v2/checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a Hosted or Embedded checkout instance. Requires a Bearer access_token, the entityId, a unique nonce, amount, and currency (e.g. ZAR, KES, MUR). Returns a checkoutId used to render the hosted page or embed the widget."
+        },
+        {
+          "info": {
+            "name": "Query checkout status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-dashboard.peachpayments.com/v2/checkout/:checkoutId",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the current status and result of a checkout session."
+        },
+        {
+          "info": {
+            "name": "Retrieve payment methods for a currency.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/merchant-specs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return the list of enabled payment methods and the merchant ID for a channel (entityId) given a particular currency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

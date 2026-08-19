@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Payments Authentication Payouts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a payout.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/payouts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a merchant payout to a verified bank account. Requires a Bearer access_token, amount, currency, and beneficiary bank details."
+        },
+        {
+          "info": {
+            "name": "Query a payout.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-dashboard.peachpayments.com/payouts/:payoutId",
+            "params": [
+              {
+                "name": "payoutId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the status and detail of a payout."
+        },
+        {
+          "info": {
+            "name": "Verify a bank account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/accounts/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify a beneficiary bank account before creating a payout."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Payments Authentication API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate an OAuth access token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange clientId, clientSecret, and merchantId for a short-lived Bearer access_token used by the Checkout, Payouts, and Reconciliation APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Payments Authentication Payment Links API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all payment links.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/channels/:entityId/payments",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List payment links for a channel (entityId)."
+        },
+        {
+          "info": {
+            "name": "Generate a payment link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/channels/:entityId/payments",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a shareable payment link for a channel (entityId). Requires a Bearer access_token, amount, currency, and an expiry."
+        },
+        {
+          "info": {
+            "name": "Cancel a payment link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/payments/:paymentId",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a previously generated payment link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

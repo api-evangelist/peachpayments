@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "c37912c1-1ab7-4452-8cc5-b3b28adc8fb6",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth 2.0 token generation for Checkout, Payouts, and Reconciliation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2604fa0-884d-448e-95ae-f62213dfb3b7",
+          "name": "Generate an OAuth access token.",
+          "request": {
+            "name": "Generate an OAuth access token.",
+            "description": {
+              "content": "Exchange clientId, clientSecret, and merchantId for a short-lived Bearer access_token used by the Checkout, Payouts, and Reconciliation APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "660490cd-d4e7-48f5-9fbf-0c042f438c42",
+              "name": "Token issued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"expires_in\": 3079,\n  \"token_type\": \"Bearer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1a436fb-40a8-4d54-9a45-f7be6246c110",
+              "name": "Invalid client credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"merchantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-dashboard.peachpayments.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa15c7b8-9c5d-4537-baf2-e36284f86a79",
+    "name": "Peach Payments Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

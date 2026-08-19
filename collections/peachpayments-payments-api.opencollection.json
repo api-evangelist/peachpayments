@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Authentication Payments API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate a debit transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-dashboard.peachpayments.com/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a server-to-server debit (paymentType DB) or refund (paymentType RF). Certain parameters are required per payment brand. Local brands include PayShap (bank-to-bank instant EFT), Capitec Pay, 1Voucher (voucher PIN), Mobicred (revolving credit), RCS (store card), M-PESA (Kenya mobile money, integer amounts only), blink by Emtel and MCB Juice (Mauritius wallets), Nedbank Direct EFT, Peach EFT, Payflex, ZeroPay, Float, Happy Pay, Scan to Pay, MoneyBadger, and MauCAS. Authentication is an in"
+        },
+        {
+          "info": {
+            "name": "Query transaction status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-dashboard.peachpayments.com/payments/:uniqueId",
+            "params": [
+              {
+                "name": "uniqueId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and result of a previously initiated transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

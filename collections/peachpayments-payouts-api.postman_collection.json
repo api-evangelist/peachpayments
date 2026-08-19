@@ -1,0 +1,456 @@
+{
+  "item": [
+    {
+      "id": "3a3b9ae1-8886-4f0e-8951-4f7c694eeb23",
+      "name": "Payouts",
+      "description": {
+        "content": "Merchant-initiated payouts and bank account verification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f8d7c3b-21b9-4ced-a674-4a12068b0ad2",
+          "name": "Create a payout.",
+          "request": {
+            "name": "Create a payout.",
+            "description": {
+              "content": "Initiate a merchant payout to a verified bank account. Requires a Bearer access_token, amount, currency, and beneficiary bank details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts"
+              ],
+              "host": [
+                "{{payouts-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"beneficiary\": {\n    \"accountNumber\": \"<string>\",\n    \"bankCode\": \"<string>\",\n    \"accountHolder\": \"<string>\"\n  },\n  \"merchantReference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de713cc5-052a-4eff-a3d9-9ef895767f31",
+              "name": "Payout created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{payouts-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"ZAR\",\n  \"beneficiary\": {\n    \"accountNumber\": \"<string>\",\n    \"bankCode\": \"<string>\",\n    \"accountHolder\": \"<string>\"\n  },\n  \"merchantReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payoutId\": \"string\",\n  \"status\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb600042-2c2c-4a0c-a7a6-cc7e866ddfcd",
+              "name": "Unauthorised.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{payouts-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<string>\",\n  \"currency\": \"ZAR\",\n  \"beneficiary\": {\n    \"accountNumber\": \"<string>\",\n    \"bankCode\": \"<string>\",\n    \"accountHolder\": \"<string>\"\n  },\n  \"merchantReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6baf070a-4ff8-4bad-919f-d0244f72ea4f",
+          "name": "Query a payout.",
+          "request": {
+            "name": "Query a payout.",
+            "description": {
+              "content": "Retrieve the status and detail of a payout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                ":payoutId"
+              ],
+              "host": [
+                "{{payouts-payoutId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payoutId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "16e198e5-82e7-4b9c-a2f1-e1aa795026da",
+              "name": "Payout detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    ":payoutId"
+                  ],
+                  "host": [
+                    "{{payouts-payoutId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payoutId\": \"string\",\n  \"status\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92987674-f23a-4e9a-b75c-004960cb633f",
+              "name": "Payout not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    ":payoutId"
+                  ],
+                  "host": [
+                    "{{payouts-payoutId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91b6be57-854a-415d-9167-c713b9e9867e",
+          "name": "Verify a bank account.",
+          "request": {
+            "name": "Verify a bank account.",
+            "description": {
+              "content": "Verify a beneficiary bank account before creating a payout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "accounts",
+                "verify"
+              ],
+              "host": [
+                "{{api-accounts-verify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountNumber\": \"<string>\",\n  \"bankCode\": \"<string>\",\n  \"accountHolder\": \"<string>\",\n  \"idNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e63d96b-d9b1-49c7-8684-47f68161ea7c",
+              "name": "Verification result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "accounts",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{api-accounts-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountNumber\": \"<string>\",\n  \"bankCode\": \"<string>\",\n  \"accountHolder\": \"<string>\",\n  \"idNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-dashboard.peachpayments.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://sandbox-payouts.peachpayments.com",
+      "key": "payouts-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandbox-payouts.peachpayments.com",
+      "key": "payouts-payoutId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandbox-payouts.peachpayments.com",
+      "key": "api-accounts-verify-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "8aa6495e-1ba9-4656-8be1-70205dfbfc0e",
+    "name": "Peach Payments Authentication Payouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

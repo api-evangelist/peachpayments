@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Peach Payments Authentication Reconciliation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reconciliation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve transaction reconciliation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-dashboard.peachpayments.com/api/merchants/:merchantId/transactions-recon",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return reconciled transaction and settlement records for a merchant over a date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

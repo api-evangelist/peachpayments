@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "e9176272-83fe-4edd-9659-da3cb26f9882",
+      "name": "Payments",
+      "description": {
+        "content": "Server-to-server debit and refund transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2ff8d67-9d7b-45bd-9d4a-6f120e5f157f",
+          "name": "Initiate a debit transaction.",
+          "request": {
+            "name": "Initiate a debit transaction.",
+            "description": {
+              "content": "Initiate a server-to-server debit (paymentType DB) or refund (paymentType RF). Certain parameters are required per payment brand. Local brands include PayShap (bank-to-bank instant EFT), Capitec Pay, 1Voucher (voucher PIN), Mobicred (revolving credit), RCS (store card), M-PESA (Kenya mobile money, integer amounts only), blink by Emtel and MCB Juice (Mauritius wallets), Nedbank Direct EFT, Peach EFT, Payflex, ZeroPay, Float, Happy Pay, Scan to Pay, MoneyBadger, and MauCAS. Authentication is an inline object (userId, password, entityId).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{payments-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authentication\": {\n    \"userId\": \"<string>\",\n    \"password\": \"<string>\",\n    \"entityId\": \"<string>\"\n  },\n  \"merchantTransactionId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"paymentBrand\": \"<string>\",\n  \"paymentType\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"virtualAccount\": {\n    \"bank\": \"<string>\",\n    \"type\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"customer\": \"<object>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"cart\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "657dabc2-21f5-4110-8e42-7313d88a4485",
+              "name": "Transaction processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{payments-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"userId\": \"<string>\",\n    \"password\": \"<string>\",\n    \"entityId\": \"<string>\"\n  },\n  \"merchantTransactionId\": \"<string>\",\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"paymentBrand\": \"PAYSHAP\",\n  \"paymentType\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"virtualAccount\": {\n    \"bank\": \"<string>\",\n    \"type\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"customer\": \"<object>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"cart\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"merchantTransactionId\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"paymentBrand\": \"string\",\n  \"paymentType\": \"string\",\n  \"result\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "862e09dd-e65f-4379-be44-46aed282bdc8",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{payments-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"userId\": \"<string>\",\n    \"password\": \"<string>\",\n    \"entityId\": \"<string>\"\n  },\n  \"merchantTransactionId\": \"<string>\",\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"paymentBrand\": \"PAYSHAP\",\n  \"paymentType\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"virtualAccount\": {\n    \"bank\": \"<string>\",\n    \"type\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"customer\": \"<object>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"cart\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7051b54b-909d-4aac-bf60-32e62acd2a0a",
+              "name": "Unauthorised.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{payments-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"userId\": \"<string>\",\n    \"password\": \"<string>\",\n    \"entityId\": \"<string>\"\n  },\n  \"merchantTransactionId\": \"<string>\",\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"paymentBrand\": \"PAYSHAP\",\n  \"paymentType\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"virtualAccount\": {\n    \"bank\": \"<string>\",\n    \"type\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"customer\": \"<object>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"cart\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54e9d229-da4d-42bf-bc9e-639b4abe55ea",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{payments-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authentication\": {\n    \"userId\": \"<string>\",\n    \"password\": \"<string>\",\n    \"entityId\": \"<string>\"\n  },\n  \"merchantTransactionId\": \"<string>\",\n  \"amount\": \"100.00\",\n  \"currency\": \"ZAR\",\n  \"paymentBrand\": \"PAYSHAP\",\n  \"paymentType\": \"<string>\",\n  \"shopperResultUrl\": \"<uri>\",\n  \"virtualAccount\": {\n    \"bank\": \"<string>\",\n    \"type\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"customer\": \"<object>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"cart\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "def21f22-a25b-4273-9fec-93d564dc3a25",
+          "name": "Query transaction status.",
+          "request": {
+            "name": "Query transaction status.",
+            "description": {
+              "content": "Retrieve the status and result of a previously initiated transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":uniqueId"
+              ],
+              "host": [
+                "{{payments-uniqueId-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uniqueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c12bd2b4-5396-42c1-a74a-120c7867cca4",
+              "name": "Transaction status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":uniqueId"
+                  ],
+                  "host": [
+                    "{{payments-uniqueId-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uniqueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"merchantTransactionId\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"paymentBrand\": \"string\",\n  \"paymentType\": \"string\",\n  \"result\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74af64ad-1a5c-4893-b5e4-d4001b9ffcc2",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":uniqueId"
+                  ],
+                  "host": [
+                    "{{payments-uniqueId-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entityId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uniqueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-dashboard.peachpayments.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://testapi-v2.peachpayments.com",
+      "key": "payments-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://testapi-v2.peachpayments.com",
+      "key": "payments-uniqueId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "33cd8143-b74f-4ff8-8d9c-dafa8b3df017",
+    "name": "Peach Authentication Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.\n\nContact Support:\n Name: Peach Payments Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
