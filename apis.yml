@@ -8,6 +8,18 @@ description: Peach Payments is a pan-African payment orchestration gateway found
   Embedded, Embedded Express), server-to-server Payments, Payment Links, Payouts,
   and Reconciliation, supporting cards plus local methods like PayShap, Capitec
   Pay, 1Voucher, Mobicred, M-PESA, and MauCAS in ZAR, KES, and MUR.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
