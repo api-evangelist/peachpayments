@@ -2,12 +2,11 @@ aid: peachpayments
 url: https://raw.githubusercontent.com/api-evangelist/peachpayments/refs/heads/main/apis.yml
 name: Peach Payments
 kind: company
-description: Peach Payments is a pan-African payment orchestration gateway founded
-  in 2012 in Cape Town, South Africa, operating across South Africa, Kenya, and
-  Mauritius. Its PCI DSS Level 1 platform exposes REST APIs for Checkout (Hosted,
-  Embedded, Embedded Express), server-to-server Payments, Payment Links, Payouts,
-  and Reconciliation, supporting cards plus local methods like PayShap, Capitec
-  Pay, 1Voucher, Mobicred, M-PESA, and MauCAS in ZAR, KES, and MUR.
+description: Peach Payments is a pan-African payment orchestration gateway founded in 2012 in Cape Town,
+  South Africa, operating across South Africa, Kenya, and Mauritius. Its PCI DSS Level 1 platform exposes
+  REST APIs for Checkout (Hosted, Embedded, Embedded Express), server-to-server Payments, Payment Links,
+  Payouts, and Reconciliation, supporting cards plus local methods like PayShap, Capitec Pay, 1Voucher,
+  Mobicred, M-PESA, and MauCAS in ZAR, KES, and MUR.
 deliveryModel:
   model: saas
   open_source: false
@@ -42,7 +41,7 @@ tags:
 - Checkout
 - Payouts
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: peachpayments:peachpayments-authentication-api
@@ -124,7 +123,7 @@ apis:
   - type: Documentation
     url: https://developer.peachpayments.com/docs/bus-ops-recon-api
 - aid: peachpayments:peachpayments-payments-api
-  name: Peach Payments Payments API
+  name: Peach Payments API
   description: Server-to-server debit and refund transactions.
   humanURL: https://developer.peachpayments.com/docs/checkout-embedded-authentication
   baseURL: https://dashboard.peachpayments.com
@@ -204,7 +203,10 @@ apis:
 common:
 - type: X-MCPServerCandidate
   url: mcp/peachpayments-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/peach-payments/overview
 - type: AgenticAccess
