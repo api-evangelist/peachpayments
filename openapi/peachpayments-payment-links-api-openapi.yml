@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Peach Payments Authentication Payment Links API
-  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  title: Peach Payments Payment Links API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius).
   version: '1.0'
   contact:
     name: Peach Payments Developer Support
@@ -26,7 +26,7 @@ paths:
       operationId: createPaymentLink
       tags:
       - Payment Links
-      summary: Generate a payment link.
+      summary: Generate a payment link
       description: Create a shareable payment link for a channel (entityId). Requires a Bearer access_token, amount, currency, and an expiry.
       security:
       - bearerAuth: []
@@ -53,7 +53,7 @@ paths:
       operationId: listPaymentLinks
       tags:
       - Payment Links
-      summary: Retrieve all payment links.
+      summary: Retrieve all payment links
       description: List payment links for a channel (entityId).
       security:
       - bearerAuth: []
@@ -80,7 +80,7 @@ paths:
       operationId: cancelPaymentLink
       tags:
       - Payment Links
-      summary: Cancel a payment link.
+      summary: Cancel a payment link
       description: Cancel a previously generated payment link.
       security:
       - bearerAuth: []

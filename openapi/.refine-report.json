@@ -1,12 +1,7 @@
 {
   "provider": "peachpayments",
   "sources": [
-    "peachpayments-authentication-api-openapi.yml",
-    "peachpayments-checkout-api-openapi.yml",
-    "peachpayments-payment-links-api-openapi.yml",
-    "peachpayments-payments-api-openapi.yml",
-    "peachpayments-payouts-api-openapi.yml",
-    "peachpayments-reconciliation-api-openapi.yml"
+    "_original/peachpayments-openapi.yml"
   ],
   "outputs": [
     "peachpayments-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "peachpayments-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "peachpayments-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peachpayments-checkout-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peachpayments-payment-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peachpayments-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peachpayments-payouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "peachpayments-reconciliation-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

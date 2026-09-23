@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Peach Payments Authentication Payouts API
-  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  title: Peach Payments Payouts API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius).
   version: '1.0'
   contact:
     name: Peach Payments Developer Support
@@ -26,7 +26,7 @@ paths:
       operationId: createPayout
       tags:
       - Payouts
-      summary: Create a payout.
+      summary: Create a payout
       description: Initiate a merchant payout to a verified bank account. Requires a Bearer access_token, amount, currency, and beneficiary bank details.
       security:
       - bearerAuth: []
@@ -53,7 +53,7 @@ paths:
       operationId: getPayout
       tags:
       - Payouts
-      summary: Query a payout.
+      summary: Query a payout
       description: Retrieve the status and detail of a payout.
       security:
       - bearerAuth: []
@@ -80,7 +80,7 @@ paths:
       operationId: verifyBankAccount
       tags:
       - Payouts
-      summary: Verify a bank account.
+      summary: Verify a bank account
       description: Verify a beneficiary bank account before creating a payout.
       security:
       - bearerAuth: []
@@ -95,16 +95,19 @@ paths:
           description: Verification result.
 components:
   schemas:
-    PayoutResponse:
+    BankAccountVerifyRequest:
       type: object
+      required:
+      - accountNumber
+      - bankCode
       properties:
-        payoutId:
+        accountNumber:
           type: string
-        status:
+        bankCode:
           type: string
-        amount:
+        accountHolder:
           type: string
-        currency:
+        idNumber:
           type: string
     PayoutRequest:
       type: object
@@ -129,19 +132,16 @@ components:
               type: string
         merchantReference:
           type: string
-    BankAccountVerifyRequest:
+    PayoutResponse:
       type: object
-      required:
-      - accountNumber
-      - bankCode
       properties:
-        accountNumber:
+        payoutId:
           type: string
-        bankCode:
+        status:
           type: string
-        accountHolder:
+        amount:
           type: string
-        idNumber:
+        currency:
           type: string
   securitySchemes:
     bearerAuth:

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Peach Payments Authentication API
-  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius).
   version: '1.0'
   contact:
     name: Peach Payments Developer Support
@@ -21,7 +21,7 @@ paths:
       operationId: createAccessToken
       tags:
       - Authentication
-      summary: Generate an OAuth access token.
+      summary: Generate an OAuth access token
       description: Exchange clientId, clientSecret, and merchantId for a short-lived Bearer access_token used by the Checkout, Payouts, and Reconciliation APIs. Sandbox host sandbox-dashboard.peachpayments.com; live host dashboard.peachpayments.com.
       requestBody:
         required: true

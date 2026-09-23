@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Peach Payments Authentication Checkout API
-  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius). Covers OAuth authentication, Checkout (Hosted / Embedded / Embedded Express), the Payments API for server-to-server debits and refunds, Payment Links, Payouts, and Reconciliation. Card processing is PCI DSS Level 1 certified. Auth is OAuth 2.0 client-credentials (clientId + clientSecret + merchantId -> Bearer access_token) for Checkout / Payouts / Reconciliation, and an inline authentication object (userId + password + entityId) for the server-to-server Payments API.
+  title: Peach Payments Checkout API
+  description: Payment orchestration APIs for Peach Payments, a pan-African payment gateway (South Africa, Kenya, Mauritius).
   version: '1.0'
   contact:
     name: Peach Payments Developer Support
@@ -26,7 +26,7 @@ paths:
       operationId: createCheckout
       tags:
       - Checkout
-      summary: Create a checkout session.
+      summary: Create a checkout session
       description: Create a Hosted or Embedded checkout instance. Requires a Bearer access_token, the entityId, a unique nonce, amount, and currency (e.g. ZAR, KES, MUR). Returns a checkoutId used to render the hosted page or embed the widget.
       security:
       - bearerAuth: []
@@ -55,7 +55,7 @@ paths:
       operationId: getCheckoutStatus
       tags:
       - Checkout
-      summary: Query checkout status.
+      summary: Query checkout status
       description: Retrieve the current status and result of a checkout session.
       security:
       - bearerAuth: []
@@ -87,7 +87,7 @@ paths:
       operationId: getPaymentMethodsForCurrency
       tags:
       - Checkout
-      summary: Retrieve payment methods for a currency.
+      summary: Retrieve payment methods for a currency
       description: Return the list of enabled payment methods and the merchant ID for a channel (entityId) given a particular currency.
       security:
       - bearerAuth: []
@@ -106,15 +106,27 @@ paths:
                 $ref: '#/components/schemas/MerchantSpecsResponse'
 components:
   schemas:
-    MerchantSpecsResponse:
+    Result:
       type: object
       properties:
-        merchantId:
+        code:
           type: string
-        paymentMethods:
-          type: array
-          items:
-            type: string
+          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
+        description:
+          type: string
+    CheckoutStatusResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
     CheckoutRequest:
       type: object
       required:
@@ -148,26 +160,6 @@ components:
           enum:
           - DB
           - RF
-    CheckoutResponse:
-      type: object
-      properties:
-        checkoutId:
-          type: string
-        result:
-          $ref: '#/components/schemas/Result'
-    CheckoutStatusResponse:
-      type: object
-      properties:
-        checkoutId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        paymentBrand:
-          type: string
-        result:
-          $ref: '#/components/schemas/Result'
     MerchantSpecsRequest:
       type: object
       required:
@@ -182,14 +174,22 @@ components:
         currency:
           type: string
           example: ZAR
-    Result:
+    CheckoutResponse:
       type: object
       properties:
-        code:
+        checkoutId:
           type: string
-          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
-        description:
+        result:
+          $ref: '#/components/schemas/Result'
+    MerchantSpecsResponse:
+      type: object
+      properties:
+        merchantId:
           type: string
+        paymentMethods:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http
