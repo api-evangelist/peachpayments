@@ -79,14 +79,6 @@ paths:
           description: Transaction not found.
 components:
   schemas:
-    Result:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
-        description:
-          type: string
     PaymentResponse:
       type: object
       properties:
@@ -104,6 +96,14 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/Result'
+    Result:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
+        description:
+          type: string
     PaymentRequest:
       type: object
       required:

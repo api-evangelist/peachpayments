@@ -40,6 +40,17 @@ paths:
           description: Invalid client credentials.
 components:
   schemas:
+    OAuthTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Token validity in seconds.
+        token_type:
+          type: string
+          example: Bearer
     OAuthTokenRequest:
       type: object
       required:
@@ -53,17 +64,6 @@ components:
           type: string
         merchantId:
           type: string
-    OAuthTokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        expires_in:
-          type: integer
-          description: Token validity in seconds.
-        token_type:
-          type: string
-          example: Bearer
   securitySchemes:
     bearerAuth:
       type: http
