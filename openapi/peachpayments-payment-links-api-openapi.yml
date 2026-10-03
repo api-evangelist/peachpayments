@@ -97,6 +97,20 @@ paths:
           description: Payment link not found.
 components:
   schemas:
+    PaymentLinkResponse:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        url:
+          type: string
+          format: uri
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
     PaymentLinkRequest:
       type: object
       required:
@@ -116,20 +130,6 @@ components:
         notificationUrl:
           type: string
           format: uri
-    PaymentLinkResponse:
-      type: object
-      properties:
-        paymentId:
-          type: string
-        url:
-          type: string
-          format: uri
-        status:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
