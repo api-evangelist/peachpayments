@@ -106,26 +106,6 @@ paths:
                 $ref: '#/components/schemas/MerchantSpecsResponse'
 components:
   schemas:
-    CheckoutStatusResponse:
-      type: object
-      properties:
-        checkoutId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        paymentBrand:
-          type: string
-        result:
-          $ref: '#/components/schemas/Result'
-    CheckoutResponse:
-      type: object
-      properties:
-        checkoutId:
-          type: string
-        result:
-          $ref: '#/components/schemas/Result'
     CheckoutRequest:
       type: object
       required:
@@ -159,6 +139,19 @@ components:
           enum:
           - DB
           - RF
+    CheckoutStatusResponse:
+      type: object
+      properties:
+        checkoutId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
     MerchantSpecsResponse:
       type: object
       properties:
@@ -168,6 +161,14 @@ components:
           type: array
           items:
             type: string
+    Result:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
+        description:
+          type: string
     MerchantSpecsRequest:
       type: object
       required:
@@ -182,14 +183,13 @@ components:
         currency:
           type: string
           example: ZAR
-    Result:
+    CheckoutResponse:
       type: object
       properties:
-        code:
+        checkoutId:
           type: string
-          description: Peach/OPPWA result code (e.g. 000.000.000 = success).
-        description:
-          type: string
+        result:
+          $ref: '#/components/schemas/Result'
   securitySchemes:
     bearerAuth:
       type: http

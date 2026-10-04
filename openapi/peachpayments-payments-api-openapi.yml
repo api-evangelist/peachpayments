@@ -79,23 +79,6 @@ paths:
           description: Transaction not found.
 components:
   schemas:
-    PaymentResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        merchantTransactionId:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        paymentBrand:
-          type: string
-        paymentType:
-          type: string
-        result:
-          $ref: '#/components/schemas/Result'
     Result:
       type: object
       properties:
@@ -170,6 +153,23 @@ components:
           type: object
         cart:
           type: object
+    PaymentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        merchantTransactionId:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        paymentBrand:
+          type: string
+        paymentType:
+          type: string
+        result:
+          $ref: '#/components/schemas/Result'
   securitySchemes:
     bearerAuth:
       type: http

@@ -106,20 +106,6 @@ components:
           type: string
         currency:
           type: string
-    BankAccountVerifyRequest:
-      type: object
-      required:
-      - accountNumber
-      - bankCode
-      properties:
-        accountNumber:
-          type: string
-        bankCode:
-          type: string
-        accountHolder:
-          type: string
-        idNumber:
-          type: string
     PayoutRequest:
       type: object
       required:
@@ -142,6 +128,20 @@ components:
             accountHolder:
               type: string
         merchantReference:
+          type: string
+    BankAccountVerifyRequest:
+      type: object
+      required:
+      - accountNumber
+      - bankCode
+      properties:
+        accountNumber:
+          type: string
+        bankCode:
+          type: string
+        accountHolder:
+          type: string
+        idNumber:
           type: string
   securitySchemes:
     bearerAuth:
